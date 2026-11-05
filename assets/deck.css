@@ -56,6 +56,10 @@
 .sum-card { border:1px solid #e8e8e8; border-radius:8px; padding:0.55em 0.8em; text-align:left; background:#fff; }
 .sum-card .st { font-size:0.6em; font-weight:700; margin-bottom:3px; }
 .sum-card p { font-size:0.55em !important; color:#555; margin:0; line-height:1.45; }
+.reveal a.link-card { display:block; text-decoration:none; color:inherit; border-color:var(--blue-mid); transition:background .12s; }
+.reveal a.link-card:hover { background:var(--blue-bg); }
+.reveal a.link-card .st { color:var(--blue-dark); }
+.reveal a.link-card .url { font-size:0.46em !important; color:var(--blue-mid); margin-top:3px; word-break:break-all; }
 
 /* KEY IDEA */
 .key-idea { padding:0.45em 0.9em; border-radius:8px; border-left:4px solid; font-size:0.6em !important; font-weight:600; line-height:1.45; text-align:left; margin-top:0.4em; }
@@ -90,6 +94,13 @@ code, ic { font-family:'Fira Code', Consolas, monospace; font-size:0.88em; backg
 .nota-purple { background:var(--purple-bg); color:var(--purple-dark); }
 .nota-teal { background:var(--teal-bg); color:var(--teal-dark); }
 .nota ul li, .nota strong { color:inherit; }
+.nota .rows { display:flex; flex-direction:column; gap:4px; margin-top:4px; }
+.nota .row { display:flex; justify-content:space-between; align-items:baseline; gap:10px; font-size:0.52em; line-height:1.35; padding:3px 0; border-top:1px solid rgba(0,0,0,0.07); }
+.nota .row:first-child { border-top:none; }
+.nota .dim { display:flex; justify-content:space-between; font-size:0.42em; text-transform:uppercase; letter-spacing:0.06em; font-weight:700; opacity:0.75; margin-top:6px; }
+.nota .dim + .row { border-top:none; }
+.nota .row span { text-align:left; }
+.nota .row b { font-variant-numeric:tabular-nums; white-space:nowrap; }
 
 /* CASO */
 .caso { background:#f7f7f7; border-radius:10px; padding:0.7em 1em; text-align:left; border-left:5px solid; }
@@ -101,7 +112,14 @@ code, ic { font-family:'Fira Code', Consolas, monospace; font-size:0.88em; backg
 .tl .step { flex:1; background:#f7f7f7; border-radius:8px; padding:0.5em 0.7em; text-align:left; border-top:4px solid; }
 .tl .step strong { display:block; font-size:0.58em; }
 .tl .step p { font-size:0.52em !important; margin:0; }
+.tl .step .when { font-size:0.42em; text-transform:uppercase; letter-spacing:0.07em; font-weight:700; color:#888; margin-bottom:2px; }
 .small { font-size:0.5em !important; color:#888; }
 .tight .card { padding:0.4em 0.7em; }
 .tight .key-idea { margin-top:0.25em; padding:0.35em 0.8em; }
 .tight h2 { margin-bottom:0.15em; }
+
+/* PREGUNTA ORAL (una por slide) */
+.q-slide { text-align:center; }
+.q-slide h1 { font-size:1.45em; max-width:22ch; margin:0.3em auto 0.5em; line-height:1.2; text-wrap:balance; }
+.q-slide .hints { justify-content:center; gap:10px; }
+.q-slide .hints .fb { white-space:normal; max-width:30ch; text-align:center; font-weight:500; font-size:0.5em; padding:7px 14px; }
