@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- ═══════════════════════════════════════════════════════════
+     PLANTILLA DE CLASE · Desarrollo Móvil · Instituto Retos
+     Cómo usarla:
+       1. Copiá esta carpeta a ciclo-XX-AAAA/NN-nombre-corto/
+       2. Cambiá <title>, la portada y las secciones.
+       3. Agregá la tarjeta de la sesión en ciclo-XX-AAAA/index.html
+     Estructura sugerida de una clase (2 h):
+       portada → recordatorio → el problema → el concepto →
+       código paso a paso (iteraciones) → desafío → resumen → lo que viene
+     Reglas: sin em dashes; énfasis con <strong>; código inline con <ic>;
+             una "key-idea" por slide como máximo; todo debe caber en 1280x720.
+     ═══════════════════════════════════════════════════════════ -->
+<title>Desarrollo Móvil · Clase NN</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/white.css">
+<!-- Prism para código (nunca highlight.js). Orden: core → clike → javascript → typescript → jsx → tsx -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.min.css">
+<link rel="stylesheet" href="../../assets/deck.css">
+<style>
+/* Ajustes propios de esta clase (si hacen falta) */
+pre[class*="language-"] { font-size:0.42em; border-radius:8px; background:#fafafa; border:1px solid #e0e0e0; text-align:left; }
+</style>
+</head>
+<body>
+<div class="reveal"><div class="slides">
+
+<!-- ══════════════ PORTADA ══════════════ -->
+<section data-background-color="#ffffff" style="text-align:center">
+  <span class="tag tag-gray" style="font-size:0.42em">Desarrollo Móvil · Ciclo III · 2026 · Sesión NN</span>
+  <h1 style="font-size:1.85em; margin:0.1em 0">Título de la clase</h1>
+  <p style="font-size:0.65em; color:#888; margin:0.4em 0 0.9em">"Una frase memorable que resuma la idea del día."</p>
+  <div class="chips">
+    <span class="chip tag-blue">Bloque 1 · Tema</span>
+    <span class="chip tag-purple">Bloque 2 · Tema</span>
+    <span class="chip tag-teal">Bloque 3 · Tema</span>
+  </div>
+  <p style="font-size:0.48em; color:#bbb; margin-top:1em">Docente: Alvaro García · React Native</p>
+</section>
+
+<!-- ══════════════ RECORDATORIO ══════════════ -->
+<section data-background-color="#ffffff">
+  <span class="tag tag-gray">Recordatorio</span>
+  <h2>Dónde quedamos la clase pasada</h2>
+  <div class="three-col">
+    <div class="sum-card"><div class="st">Vimos</div><p>Resumen de un renglón.</p></div>
+    <div class="sum-card"><div class="st">Construimos</div><p>Qué quedó funcionando en la app guía.</p></div>
+    <div class="sum-card"><div class="st">Quedó pendiente</div><p>El desafío o la duda abierta.</p></div>
+  </div>
+</section>
+
+<!-- ══════════════ DIVISOR DE BLOQUE ══════════════ -->
+<section data-background-color="#ffffff" class="block-divider">
+  <div class="blk-num blk-1">1</div>
+  <h1>Nombre del bloque</h1>
+  <p class="sub">Subtítulo en una línea</p>
+  <div class="flow" style="justify-content:center">
+    <div class="fb fb-blue">Paso 1</div><span class="arrow">→</span>
+    <div class="fb fb-blue">Paso 2</div><span class="arrow">→</span>
+    <div class="fb fb-blue">Paso 3</div>
+  </div>
+</section>
+
+<!-- ══════════════ EL PROBLEMA ══════════════ -->
+<section data-background-color="#ffffff">
+  <span class="tag tag-amber">Bloque 1 · El problema</span>
+  <h2>Qué duele hoy en la app guía</h2>
+  <p>Mostrá el problema antes de la solución: qué no funciona, qué se ve mal o qué es tedioso.</p>
+  <div class="two-col">
+    <div class="card" style="border-left:3px solid var(--red-mid)"><strong style="color:var(--red-dark)">Lo que pasa</strong><p>Síntoma observable.</p></div>
+    <div class="card" style="border-left:3px solid var(--amber-mid)"><strong style="color:var(--amber-dark)">Por qué pasa</strong><p>La causa, en una frase.</p></div>
+  </div>
+  <div class="key-idea key-amber">La idea clave del slide, en una oración.</div>
+</section>
+
+<!-- ══════════════ EL CONCEPTO ══════════════ -->
+<section data-background-color="#ffffff">
+  <span class="tag tag-blue">Bloque 1 · Concepto</span>
+  <h2>Qué es y por qué existe</h2>
+  <p>Explicación corta. Usá <ic>código inline</ic> para nombres de APIs y componentes.</p>
+  <div class="three-col">
+    <div class="card"><strong>Qué es</strong><p>Definición operativa.</p></div>
+    <div class="card"><strong>Cuándo se usa</strong><p>Criterio práctico.</p></div>
+    <div class="card"><strong>Cuándo no</strong><p>El error común.</p></div>
+  </div>
+  <div class="key-idea key-blue">Una regla que se pueda recordar.</div>
+</section>
+
+<!-- ══════════════ CÓDIGO · ITERACIÓN ══════════════ -->
+<section data-background-color="#ffffff">
+  <span class="tag tag-purple">Bloque 2 · Iteración 1</span>
+  <h2>Primer intento</h2>
+  <pre><code class="language-tsx">import { useState } from 'react';
+import { View, Text, Pressable } from 'react-native';
+
+export function Contador() {
+  const [cantidad, setCantidad] = useState(0);
+  return (
+    &lt;View&gt;
+      &lt;Text&gt;{cantidad}&lt;/Text&gt;
+      &lt;Pressable onPress={() =&gt; setCantidad(cantidad + 1)}&gt;
+        &lt;Text&gt;Agregar&lt;/Text&gt;
+      &lt;/Pressable&gt;
+    &lt;/View&gt;
+  );
+}</code></pre>
+  <div class="two-col" style="margin-top:0.35em">
+    <div class="card" style="border-left:3px solid var(--green-mid)"><strong style="color:var(--green-dark)">Resuelto</strong><p>Qué quedó bien.</p></div>
+    <div class="card" style="border-left:3px solid var(--red-mid)"><strong style="color:var(--red-dark)">Problema restante</strong><p>Lo que motiva la siguiente iteración.</p></div>
+  </div>
+</section>
+
+<!-- ══════════════ ¿QUÉ HUELE MAL? ══════════════ -->
+<section data-background-color="#ffffff">
+  <span class="tag tag-purple">Bloque 2 · ¿Qué huele mal?</span>
+  <h2>Funciona, pero hay tres problemas</h2>
+  <div class="three-col">
+    <div class="card" style="border-left:3px solid var(--red-mid)"><strong>1.</strong><p>Problema uno.</p></div>
+    <div class="card" style="border-left:3px solid var(--red-mid)"><strong>2.</strong><p>Problema dos.</p></div>
+    <div class="card" style="border-left:3px solid var(--red-mid)"><strong>3.</strong><p>Problema tres.</p></div>
+  </div>
+  <div class="key-idea key-purple">La solución que viene y qué resuelve de los tres.</div>
+</section>
+
+<!-- ══════════════ DESAFÍO ══════════════ -->
+<section data-background-color="#ffffff">
+  <span class="tag tag-green">Desafío</span>
+  <h2>Ahora en tu proyecto</h2>
+  <div class="two-col">
+    <div class="card"><strong>Qué hacer</strong><p>Aplicar lo de hoy a una pantalla del proyecto. Criterio de aceptación claro y verificable.</p></div>
+    <div class="card"><strong>Cómo se entrega</strong><p>Rama, commit y enlace en el LMS antes de la próxima clase.</p></div>
+  </div>
+  <div class="key-idea key-green">Criterio de aceptación: qué tiene que verse funcionando para que cuente como completo.</div>
+</section>
+
+<!-- ══════════════ RESUMEN ══════════════ -->
+<section data-background-color="#ffffff">
+  <span class="tag tag-gray">Resumen</span>
+  <h2>Lo que construimos hoy</h2>
+  <div class="three-col">
+    <div class="sum-card" style="border-top:3px solid var(--blue-mid)"><div class="st">Concepto</div><p>En una frase.</p></div>
+    <div class="sum-card" style="border-top:3px solid var(--purple-mid)"><div class="st">Código</div><p>Qué quedó en la app guía.</p></div>
+    <div class="sum-card" style="border-top:3px solid var(--teal-mid)"><div class="st">Errores comunes</div><p>Los dos o tres que van a cometer.</p></div>
+  </div>
+  <div class="key-idea key-blue">La única idea que deberían llevarse.</div>
+</section>
+
+<!-- ══════════════ LO QUE VIENE ══════════════ -->
+<section data-background-color="#ffffff">
+  <span class="tag tag-gray">Lo que viene</span>
+  <h2>Próxima clase: título</h2>
+  <div class="two-col">
+    <div class="card"><strong>En clase</strong><ul><li>Tema uno.</li><li>Tema dos.</li></ul></div>
+    <div class="card"><strong>Para la próxima</strong><ul><li>Desafío entregado.</li><li>Lectura en el LMS.</li></ul></div>
+  </div>
+  <div class="key-idea key-purple">El gancho: por qué la próxima clase resuelve algo que hoy quedó abierto.</div>
+</section>
+
+</div></div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-clike.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-typescript.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-tsx.min.js"></script>
+<script>
+Reveal.initialize({
+  hash:true, transition:'slide', transitionSpeed:'fast',
+  controls:true, progress:true, center:true,
+  width:1280, height:720, margin:0.08,
+  minScale:0.5, maxScale:1.4
+});
+Reveal.on('ready', () => Prism.highlightAll());
+</script>
+</body>
+</html>
