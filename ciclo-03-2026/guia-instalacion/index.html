@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guía de instalación · React Native CLI</title>
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<div class="wrap guide">
+  <header>
+    <span class="tag tag-gray">Desarrollo Móvil · Ciclo III 2026 · Tarea de la sesión 2</span>
+    <h1>Guía de instalación: React Native CLI para Android</h1>
+    <p>Todo lo que hace falta para que el jueves 12 su primera app corra en un emulador o en su teléfono. Docente: Alvaro García.</p>
+  </header>
+
+  <div class="toc">
+    <a href="#antes">Antes de empezar</a>
+    <a href="#windows">Windows</a>
+    <a href="#mac">macOS</a>
+    <a href="#telefono">Teléfono o emulador</a>
+    <a href="#verificar">Verificar y entregar</a>
+    <a href="#errores">Errores comunes</a>
+  </div>
+
+  <div class="callout callout-amber">
+    <strong>Sigan los pasos en orden y no se salten ninguno.</strong> Casi todos los problemas de una primera clase práctica vienen de instalar las cosas en otro orden, de tener dos versiones de Java, o de abrir la terminal antes de configurar las variables de entorno. Calculen entre 60 y 90 minutos más el tiempo de descarga (unos 4 GB en total). Háganlo con buena conexión y la laptop conectada a la corriente.
+  </div>
+
+  <h2 id="antes">Antes de empezar</h2>
+  <p>Vamos a instalar cuatro cosas. Conviene saber para qué sirve cada una, porque cuando algo falle van a saber dónde mirar.</p>
+  <div class="req">
+    <div><b>Node.js (LTS, 22 o superior)</b>Ejecuta JavaScript en su computadora. Trae <code>npm</code> y <code>npx</code>, con los que se crea y arranca el proyecto.</div>
+    <div><b>JDK 17</b>El kit de Java. Android se compila con Gradle, y Gradle corre sobre Java. Tiene que ser la 17: con versiones más nuevas hay problemas.</div>
+    <div><b>Android Studio + SDK</b>Trae el SDK de Android (las herramientas que compilan la app), <code>adb</code> (que habla con el teléfono) y el emulador.</div>
+    <div><b>Un Android donde correr</b>Un emulador creado desde Android Studio, o mejor aún, su propio teléfono con depuración USB.</div>
+  </div>
+  <p><strong>Requisitos de la máquina:</strong> Windows 10 u 11 de 64 bits, o macOS 13 o superior. 8 GB de RAM como mínimo (con 16 se trabaja cómodo). Unos 20 GB libres en disco. Usuario con permisos de administrador.</p>
+  <div class="callout callout-red">
+    <strong>Windows: revisen el nombre de su usuario.</strong> Si la carpeta <code>C:\Users\SuNombre</code> tiene tilde, eñe o espacio (por ejemplo <code>C:\Users\José Pérez</code>), varias herramientas de Android fallan de formas raras. Escríbanme antes de instalar: la solución es poner el SDK en <code>C:\Android\Sdk</code> y se los explico.
+  </div>
+  <p>Si usan Linux, también se puede; hablen conmigo y lo vemos aparte.</p>
+
+  <!-- ══════════════════ WINDOWS ══════════════════ -->
+  <h2 id="windows">Windows 10 / 11</h2>
+  <ol class="steps">
+    <li>
+      <strong>Instalar Node.js LTS</strong>
+      Abran PowerShell (clic derecho, "Ejecutar como administrador") y corran:
+      <pre><code>winget install OpenJS.NodeJS.LTS</code></pre>
+      Si <code>winget</code> no existe en su máquina, descarguen el instalador <strong>LTS</strong> desde <a href="https://nodejs.org/" target="_blank">nodejs.org</a> y acepten todo por defecto. Cierren y vuelvan a abrir la terminal, y verifiquen:
+      <pre><code>node -v
+npm -v</code></pre>
+      <code>node -v</code> debe mostrar <strong>v22.11 o superior</strong>.
+    </li>
+    <li>
+      <strong>Instalar el JDK 17 (Microsoft Build of OpenJDK)</strong>
+      <pre><code>winget install Microsoft.OpenJDK.17</code></pre>
+      Cierren la terminal, ábranla de nuevo y verifiquen que la versión sea 17:
+      <pre><code>java -version</code></pre>
+      Si ya tenían otro Java instalado (por ejemplo el 21 o el 25 de otra materia), este paso <strong>no lo reemplaza</strong>. En ese caso, <code>java -version</code> puede seguir mostrando la otra versión; lo arreglamos con <code>JAVA_HOME</code> en el paso 4.
+    </li>
+    <li>
+      <strong>Instalar Android Studio</strong>
+      <ul>
+        <li>Descarguen el instalador desde <a href="https://developer.android.com/studio" target="_blank">developer.android.com/studio</a> y ejecútenlo.</li>
+        <li>En la pantalla de componentes dejen marcados <strong>Android Studio</strong> y <strong>Android Virtual Device</strong>. Siguiente hasta terminar.</li>
+        <li>Al abrirlo por primera vez elijan la instalación <strong>Standard</strong> y acepten las licencias. Va a descargar el SDK: paciencia.</li>
+        <li>En la pantalla de bienvenida: <strong>More Actions → SDK Manager</strong>.</li>
+        <li>Pestaña <strong>SDK Platforms</strong>: marquen la casilla <strong>Show Package Details</strong> (abajo a la derecha), desplieguen <strong>Android 15.0 ("VanillaIceCream")</strong> y marquen:
+          <ul>
+            <li><code>Android SDK Platform 35</code></li>
+            <li><code>Intel x86_64 Atom System Image</code> o <code>Google APIs Intel x86_64 Atom System Image</code> (sirve también para procesadores AMD)</li>
+          </ul>
+        </li>
+        <li>Pestaña <strong>SDK Tools</strong>: con Show Package Details activo, marquen:
+          <ul>
+            <li><code>Android SDK Build-Tools</code> → la versión <code>36.0.0</code></li>
+            <li><code>Android SDK Command-line Tools (latest)</code></li>
+            <li><code>Android Emulator</code> y <code>Android SDK Platform-Tools</code> (normalmente ya vienen marcados)</li>
+          </ul>
+        </li>
+        <li>Clic en <strong>Apply</strong> y esperen la descarga.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Configurar las variables de entorno</strong>
+      Busquen en el menú Inicio "<strong>Editar las variables de entorno de la cuenta</strong>" (o: Panel de control → Cuentas de usuario → Cambiar mis variables de entorno). En la sección de arriba, <em>Variables de usuario</em>:
+      <ul>
+        <li><strong>Nueva…</strong> → Nombre: <code>ANDROID_HOME</code> → Valor: <code>%LOCALAPPDATA%\Android\Sdk</code><br>(es la carpeta <code>C:\Users\SuNombre\AppData\Local\Android\Sdk</code>; si Android Studio les mostró otra ruta en el SDK Manager, usen esa).</li>
+        <li><strong>Nueva…</strong> → Nombre: <code>JAVA_HOME</code> → Valor: la carpeta del JDK 17, normalmente <code>C:\Program Files\Microsoft\jdk-17.0.x.x-hotspot</code> (abran el Explorador y copien la ruta exacta; adentro tiene que haber una carpeta <code>bin</code>).</li>
+        <li>Seleccionen la variable <code>Path</code> → <strong>Editar…</strong> → <strong>Nuevo</strong> y agreguen estas dos líneas:
+          <pre><code>%LOCALAPPDATA%\Android\Sdk\platform-tools
+%LOCALAPPDATA%\Android\Sdk\emulator</code></pre>
+        </li>
+        <li>Aceptar en todas las ventanas. <strong>Cierren todas las terminales abiertas</strong> (las variables solo se cargan en terminales nuevas).</li>
+      </ul>
+      Abran una terminal nueva y verifiquen:
+      <pre><code>echo %ANDROID_HOME%
+echo %JAVA_HOME%
+java -version
+adb --version</code></pre>
+      Las dos primeras deben mostrar las rutas, <code>java -version</code> debe decir 17 y <code>adb</code> debe mostrar una versión. Si alguna falla, revisen ese paso antes de seguir.
+    </li>
+    <li>
+      <strong>Preparar dónde correr la app</strong>
+      Sigan la sección <a href="#telefono">Teléfono o emulador</a>. Recomendación: si su laptop tiene 8 GB de RAM, vayan directo al teléfono.
+    </li>
+    <li>
+      <strong>Verificar y entregar</strong>
+      Sigan la sección <a href="#verificar">Verificar y entregar</a>.
+    </li>
+  </ol>
+  <div class="callout callout-blue">
+    <strong>Si PowerShell dice "la ejecución de scripts está deshabilitada"</strong> al correr <code>npx</code>, usen el Símbolo del sistema (cmd) en lugar de PowerShell, o corran una sola vez en PowerShell: <code>Set-ExecutionPolicy -Scope CurrentUser RemoteSigned</code>.
+  </div>
+
+  <!-- ══════════════════ macOS ══════════════════ -->
+  <h2 id="mac">macOS</h2>
+  <ol class="steps">
+    <li>
+      <strong>Instalar Homebrew (si no lo tienen)</strong>
+      Abran la Terminal y verifiquen con <code>brew -v</code>. Si no existe, instálenlo con el comando oficial de <a href="https://brew.sh/" target="_blank">brew.sh</a>:
+      <pre><code>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</code></pre>
+      Al terminar, en una Mac con chip Apple (M1 a M4) el instalador muestra dos comandos bajo <em>Next steps</em> para agregar brew al PATH. Cópienlos y córranlos tal cual.
+    </li>
+    <li>
+      <strong>Instalar Node.js y Watchman</strong>
+      <pre><code>brew install node watchman
+node -v</code></pre>
+      <code>node -v</code> debe mostrar <strong>v22.11 o superior</strong>. Watchman es un vigilante de archivos de Meta que hace que Fast Refresh sea más rápido.
+    </li>
+    <li>
+      <strong>Instalar el JDK 17 (Azul Zulu)</strong>
+      <pre><code>brew install --cask zulu@17</code></pre>
+      Después abran la carpeta donde quedó el instalador y ejecuten el <code>.pkg</code>:
+      <pre><code>open /opt/homebrew/Caskroom/zulu@17/</code></pre>
+      (en Macs con Intel la ruta es <code>/usr/local/Caskroom/zulu@17/</code>). Entren a la carpeta con el número de versión y hagan doble clic en <em>Double-Click to Install Azul Zulu JDK 17.pkg</em>.
+    </li>
+    <li>
+      <strong>Instalar Android Studio</strong>
+      <ul>
+        <li>Descarguen desde <a href="https://developer.android.com/studio" target="_blank">developer.android.com/studio</a> la versión para su chip (<strong>Apple Silicon</strong> para M1 a M4, <strong>Intel</strong> para las demás). Si no saben cuál tienen: menú Apple → Acerca de esta Mac.</li>
+        <li>Arrastren Android Studio a Aplicaciones y ábranlo. Instalación <strong>Standard</strong>, acepten las licencias y esperen la descarga del SDK.</li>
+        <li>En la pantalla de bienvenida: <strong>More Actions → SDK Manager</strong>.</li>
+        <li>Pestaña <strong>SDK Platforms</strong>: marquen <strong>Show Package Details</strong>, desplieguen <strong>Android 15.0 ("VanillaIceCream")</strong> y marquen:
+          <ul>
+            <li><code>Android SDK Platform 35</code></li>
+            <li>Apple Silicon: <code>Google APIs ARM 64 v8a System Image</code> · Intel: <code>Intel x86_64 Atom System Image</code></li>
+          </ul>
+        </li>
+        <li>Pestaña <strong>SDK Tools</strong>: con Show Package Details activo, marquen <code>Android SDK Build-Tools</code> versión <code>36.0.0</code>, <code>Android SDK Command-line Tools (latest)</code>, <code>Android Emulator</code> y <code>Android SDK Platform-Tools</code>.</li>
+        <li><strong>Apply</strong> y esperar.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Configurar las variables de entorno</strong>
+      Abran su archivo de perfil de la terminal. En macOS moderno es <code>~/.zshrc</code>:
+      <pre><code>open -e ~/.zshrc</code></pre>
+      (si dice que no existe, créenlo con <code>touch ~/.zshrc</code> y repitan). Agreguen al final estas líneas y guarden:
+      <pre><code>export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/platform-tools</code></pre>
+      Cierren la Terminal, ábranla de nuevo y verifiquen:
+      <pre><code>echo $ANDROID_HOME
+java -version
+adb --version</code></pre>
+      La primera debe mostrar la ruta del SDK, la segunda debe decir 17 y la tercera una versión de adb.
+    </li>
+    <li>
+      <strong>Preparar dónde correr la app</strong>
+      Sigan la sección <a href="#telefono">Teléfono o emulador</a>. En Macs con chip Apple el emulador corre muy bien.
+    </li>
+    <li>
+      <strong>Verificar y entregar</strong>
+      Sigan la sección <a href="#verificar">Verificar y entregar</a>.
+    </li>
+  </ol>
+  <div class="callout callout-blue">
+    <strong>¿Y Xcode?</strong> No hace falta para el módulo: iOS lo vamos a ver en demostración desde mi Mac. Si alguien quiere compilar para iPhone por su cuenta, necesita Xcode desde la App Store (unos 15 GB) y CocoaPods; lo vemos aparte.
+  </div>
+
+  <!-- ══════════════════ TELÉFONO O EMULADOR ══════════════════ -->
+  <h2 id="telefono">Teléfono o emulador</h2>
+  <p>Necesitan al menos uno de los dos. El teléfono es más rápido, consume menos recursos y es donde la app se va a usar de verdad; el emulador es cómodo cuando no tienen el cable a mano.</p>
+
+  <h3>Opción A: su teléfono Android (recomendada)</h3>
+  <ol class="steps">
+    <li>
+      <strong>Activar las opciones de desarrollador</strong>
+      Ajustes → Acerca del teléfono (o Información del software) → toquen <strong>siete veces</strong> sobre <em>Número de compilación</em> hasta que diga que ya son desarrolladores. En Xiaomi está en "Versión de MIUI/HyperOS"; en Samsung dentro de "Información de software".
+    </li>
+    <li>
+      <strong>Activar la depuración USB</strong>
+      Ajustes → Sistema → Opciones de desarrollador → <strong>Depuración USB</strong>: activar.
+    </li>
+    <li>
+      <strong>Conectar y autorizar</strong>
+      Conecten el teléfono con cable a la computadora. Si el teléfono pregunta el modo de conexión, elijan <em>Transferencia de archivos</em>. Aparece un aviso "¿Permitir depuración USB?": marquen <em>Permitir siempre</em> y acepten. En la terminal:
+      <pre><code>adb devices</code></pre>
+      Debe aparecer su dispositivo con la palabra <code>device</code>. Si dice <code>unauthorized</code>, revisen el aviso en la pantalla del teléfono. Si no aparece nada, cambien de cable (muchos solo cargan) o de puerto; en Windows a veces hace falta el driver USB del fabricante (Samsung, Xiaomi, Huawei lo publican en su sitio).
+    </li>
+  </ol>
+
+  <h3>Opción B: el emulador</h3>
+  <ol class="steps">
+    <li>
+      <strong>Crear el dispositivo virtual</strong>
+      En Android Studio: <strong>More Actions → Virtual Device Manager → Create Virtual Device</strong>. Elijan un teléfono mediano (Pixel 7 o Medium Phone) → Next → en la lista de imágenes elijan <strong>VanillaIceCream, API 35</strong> (la que instalaron en el SDK Manager) → Next → Finish.
+    </li>
+    <li>
+      <strong>Arrancarlo</strong>
+      Clic en el triángulo de Play. La primera vez tarda. Si arranca y ven el escritorio de Android, listo. Déjenlo abierto cuando vayan a correr la app.
+    </li>
+    <li>
+      <strong>Si no arranca</strong>
+      <ul>
+        <li>Windows: la virtualización tiene que estar activa en el BIOS (VT-x en Intel, SVM en AMD). Además, en "Activar o desactivar las características de Windows" marquen <strong>Plataforma de hipervisor de Windows</strong> y reinicien.</li>
+        <li>Si la laptop tiene 8 GB de RAM, el emulador va a pelear con Android Studio y el navegador. Usen el teléfono.</li>
+      </ul>
+    </li>
+  </ol>
+
+  <!-- ══════════════════ VERIFICAR ══════════════════ -->
+  <h2 id="verificar">Verificar y entregar</h2>
+  <ol class="steps">
+    <li>
+      <strong>Correr el doctor de React Native</strong>
+      En una terminal <strong>nueva</strong> (importante, para que cargue las variables), corran:
+      <pre><code>npx @react-native-community/cli@latest doctor</code></pre>
+      La primera vez pregunta si quieren instalar el paquete: respondan <code>y</code>. El doctor revisa Node, JDK, Android SDK, <code>ANDROID_HOME</code> y <code>adb</code>, y marca cada cosa con ✓ o ✖. Si ofrece arreglar algo (<em>Press f to try to fix</em>), pueden intentarlo.
+    </li>
+    <li>
+      <strong>Tomar la captura</strong>
+      Captura de pantalla de la terminal donde se vea el resultado completo del doctor. Las secciones de <strong>Common</strong> y <strong>Android</strong> deben estar en verde. Lo de <strong>iOS</strong> (Xcode, CocoaPods) va a salir en rojo o no aparecer en Windows: <strong>eso está bien</strong>, no lo necesitamos.
+    </li>
+    <li>
+      <strong>Subirla al LMS antes del miércoles 11 a las 9 de la noche</strong>
+      Si algo quedó en rojo y no lograron arreglarlo, suban la captura igual, con una línea diciendo en qué paso de esta guía se trabaron. Esa captura me sirve para llegar el jueves sabiendo exactamente a quién ayudar y con qué.
+    </li>
+  </ol>
+  <div class="callout callout-green">
+    <strong>Con eso están listos.</strong> El jueves creamos el proyecto juntos, en clase. No instalen Expo, ni creen un proyecto todavía, ni instalen nada "por si acaso": vamos a hacerlo paso a paso para que entiendan cada carpeta que aparece.
+  </div>
+
+  <!-- ══════════════════ ERRORES ══════════════════ -->
+  <h2 id="errores">Errores comunes</h2>
+  <div class="err"><b>El doctor dice que no encuentra el Android SDK o <code>ANDROID_HOME</code></b><p>Casi siempre es porque la terminal se abrió antes de configurar la variable, o porque la ruta tiene un error de escritura. Cierren todas las terminales, ábranla de nuevo y corran <code>echo %ANDROID_HOME%</code> (Windows) o <code>echo $ANDROID_HOME</code> (Mac). Abran esa ruta en el explorador: adentro debe haber una carpeta <code>platform-tools</code>.</p></div>
+  <div class="err"><b><code>java -version</code> muestra 21, 25 u otra versión que no es 17</b><p>Tienen más de un Java. <code>JAVA_HOME</code> tiene que apuntar a la carpeta del 17 (ver el paso de variables de entorno de su sistema). En Windows, además, revisen que en <code>Path</code> no haya una entrada de otro Java antes que la del 17; si la hay, bájenla o quítenla.</p></div>
+  <div class="err"><b>"<code>adb</code> no se reconoce como un comando"</b><p>Falta <code>platform-tools</code> en el <code>Path</code>, o la terminal es vieja. Revisen el paso de variables y abran una terminal nueva.</p></div>
+  <div class="err"><b>El doctor pide una versión del SDK o de Build-Tools distinta a la de esta guía</b><p>Instálenla desde el SDK Manager tal como la pide (es cuestión de marcar la casilla y Apply). Las versiones de esta guía son las que piden las versiones actuales de React Native; cuando la herramienta pida otra, la herramienta gana.</p></div>
+  <div class="err"><b>El teléfono no aparece en <code>adb devices</code></b><p>Cable que solo carga (cambien de cable), modo de conexión "Solo carga" (cambien a Transferencia de archivos), depuración USB apagada, o en Windows falta el driver del fabricante. Si dice <code>unauthorized</code>, acepten el aviso en el teléfono.</p></div>
+  <div class="err"><b>El emulador no arranca o dice algo de HAXM, Hyper-V o virtualización</b><p>Virtualización desactivada en el BIOS, o falta la "Plataforma de hipervisor de Windows". Mientras lo resuelven, usen el teléfono: para la clase es suficiente.</p></div>
+  <div class="err"><b>Nombre de usuario de Windows con tilde, eñe o espacio</b><p>Es el problema más incómodo porque los errores no dicen la causa. Escríbanme antes de seguir: movemos el SDK a <code>C:\Android\Sdk</code> desde el SDK Manager (Edit → Android SDK Location) y actualizamos <code>ANDROID_HOME</code>.</p></div>
+  <div class="err"><b>Antivirus o firewall</b><p>Algunos antivirus bloquean a Node cuando abre el puerto 8081 (Metro) o hacen lentísima la primera compilación de Gradle. Si Windows pregunta si permitir Node.js en redes privadas, digan que sí.</p></div>
+
+  <p style="margin-top:28px">Si algo no está en esta lista, escríbanme con la captura del error exacto, su sistema operativo y el paso en el que estaban. "No me funciona" sin captura es un mensaje que no puedo resolver.</p>
+
+  <footer>
+    <a href="../">Volver al índice del ciclo</a> · Material del curso Desarrollo Móvil, Instituto Retos.
+  </footer>
+</div>
+</body>
+</html>

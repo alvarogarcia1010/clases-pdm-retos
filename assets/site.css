@@ -50,3 +50,33 @@ footer a { color:inherit; }
 .ciclo { display:block; text-decoration:none; color:inherit; background:var(--card); border:1px solid var(--line); border-radius:12px; padding:18px 20px; }
 .ciclo strong { font-size:1.1rem; display:block; }
 .ciclo span { color:var(--muted); font-size:0.9rem; }
+
+/* GUÍAS (páginas largas de texto: instalación, etc.) */
+.guide h2 { font-size:1.35rem; margin:2.4em 0 0.5em; padding-top:0.6em; border-top:1px solid var(--line); }
+.guide h3 { font-size:1.05rem; margin:1.6em 0 0.4em; }
+.guide p, .guide li { font-size:0.97rem; }
+.guide ol.steps { counter-reset:step; list-style:none; padding:0; margin:0; }
+.guide ol.steps > li { counter-increment:step; position:relative; min-width:0; overflow-wrap:anywhere; padding:14px 16px 14px 56px; margin:10px 0; background:var(--card); border:1px solid var(--line); border-radius:12px; }
+.guide ol.steps > li::before { content:counter(step); position:absolute; left:16px; top:14px; width:28px; height:28px; border-radius:50%; background:var(--blue-bg); color:var(--blue-dark); font-weight:700; font-size:0.85rem; display:flex; align-items:center; justify-content:center; }
+.guide ol.steps > li > strong:first-child { display:block; font-size:1rem; margin-bottom:4px; }
+.guide ol.steps ul { margin:6px 0 0 1.1em; padding:0; }
+.guide ol.steps li li { margin:3px 0; }
+.guide code { font-family:'Fira Code', Consolas, Menlo, monospace; font-size:0.86em; background:var(--line); padding:1px 6px; border-radius:4px; overflow-wrap:anywhere; }
+.guide pre { max-width:100%; background:#1e1e1e; color:#e8e8e8; border-radius:10px; padding:12px 16px; overflow-x:auto; font-size:0.86rem; line-height:1.5; margin:8px 0; }
+.guide pre code { background:none; padding:0; color:inherit; font-size:inherit; }
+.callout { border-radius:10px; padding:12px 16px; margin:14px 0; font-size:0.95rem; border-left:4px solid; }
+.callout-amber { background:var(--amber-bg); color:var(--amber-dark); border-color:var(--amber-dark); }
+.callout-green { background:var(--green-bg); color:var(--green-dark); border-color:var(--green-dark); }
+.callout-blue  { background:var(--blue-bg);  color:var(--blue-dark);  border-color:var(--blue-dark); }
+.callout-red   { background:#FCEBEB; color:#791F1F; border-color:#A32D2D; }
+.callout strong { color:inherit; }
+.toc { display:flex; flex-wrap:wrap; gap:8px; margin:18px 0 6px; }
+.toc a { text-decoration:none; font-size:0.85rem; font-weight:600; padding:6px 12px; border-radius:20px; background:var(--card); border:1px solid var(--line); color:var(--ink); }
+.toc a:hover { background:var(--blue-bg); color:var(--blue-dark); }
+.req { display:grid; grid-template-columns:repeat(auto-fill, minmax(200px, 1fr)); gap:10px; margin:14px 0; }
+.req div { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:10px 14px; font-size:0.9rem; }
+.req div b { display:block; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--muted); margin-bottom:2px; }
+.err { margin:10px 0; padding:12px 16px; background:var(--card); border:1px solid var(--line); border-radius:10px; }
+.err b { display:block; margin-bottom:3px; }
+.err p { margin:0; font-size:0.93rem; color:var(--muted); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .callout-red { background:#3a1818; color:#f3b4b4; border-color:#e07a7a; } }

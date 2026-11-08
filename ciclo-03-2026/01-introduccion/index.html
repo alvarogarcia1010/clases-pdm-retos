@@ -20,8 +20,7 @@
   <p style="font-size:0.65em; color:#888; margin:0.4em 0 0.9em">"Una buena app no empieza en el código. Empieza en un problema que alguien tiene de verdad."</p>
   <div class="chips">
     <span class="chip tag-blue">Bloque 1 · Cómo vamos a trabajar</span>
-    <span class="chip tag-purple">Bloque 2 · El mundo móvil</span>
-    <span class="chip tag-teal">Bloque 3 · Cómo se trabaja en una empresa</span>
+    <span class="chip tag-gray">El mundo móvil y la empresa pasaron a la clase 2</span>
   </div>
   <p style="font-size:0.56em; color:#444; font-weight:600; margin-top:1em">Docente: Alvaro García · React Native</p>
 </section>
@@ -195,252 +194,6 @@
 </section>
 
 <!-- ══════════════════════════════
-     BLOQUE 2 · EL MUNDO MÓVIL
-     ══════════════════════════════ -->
-<section data-background-color="#ffffff" class="block-divider">
-  <div class="blk-num blk-2">2</div>
-  <h1>El mundo móvil</h1>
-  <p class="sub">Sistemas, tipos de apps y la pregunta que define todo: ¿nativo o multiplataforma?</p>
-  <div class="flow" style="justify-content:center">
-    <div class="fb fb-purple">Android e iOS</div><span class="arrow">→</span>
-    <div class="fb fb-purple">Tipos de apps</div><span class="arrow">→</span>
-    <div class="fb fb-purple">¿Cuál elegir?</div><span class="arrow">→</span>
-    <div class="fb fb-amber">Casos prácticos</div>
-  </div>
-</section>
-
-<section data-background-color="#ffffff" class="q-slide">
-  <span class="tag tag-purple">Bloque 2 · Conversemos</span>
-  <h1>¿Qué apps usan todos los días? ¿Qué les gusta y qué les molesta de ellas?</h1>
-  <div class="flow hints"><span class="fb fb-gray">WhatsApp, Instagram, el banco, Uber, TikTok…</span><span class="fb fb-gray">Cada una la hizo alguien resolviendo un problema. Ustedes van a hacer una real.</span></div>
-</section>
-
-<section data-background-color="#ffffff">
-  <span class="tag tag-purple">Bloque 2 · Sistemas operativos</span>
-  <h2>Dos sistemas, dos filosofías</h2>
-  <div class="two-col">
-    <div class="card" style="border-top:4px solid #3B6D11">
-      <strong>Android (Google)</strong>
-      <ul>
-        <li>Domina el mercado mundial: alrededor de 7 de cada 10 teléfonos. En El Salvador, la gran mayoría.</li>
-        <li>Basado en Linux y de código abierto (AOSP). Cada fabricante le pone su capa: Samsung, Xiaomi, Motorola.</li>
-        <li>Miles de modelos, versiones y tamaños de pantalla. Más libertad, más fragmentación.</li>
-        <li>Publicar es barato y rápido: Google Play.</li>
-      </ul>
-    </div>
-    <div class="card" style="border-top:4px solid #555">
-      <strong>iOS (Apple)</strong>
-      <ul>
-        <li>Solo en dispositivos Apple. Hardware y software controlados por una sola empresa.</li>
-        <li>Pocos modelos, actualizaciones rápidas, rendimiento y seguridad consistentes.</li>
-        <li>Reglas más estrictas para desarrolladores y una revisión más exigente en la App Store.</li>
-        <li>Para compilar se necesita una Mac, sin excepción.</li>
-      </ul>
-    </div>
-  </div>
-  <div class="key-idea key-purple">Para ustedes esto significa algo muy práctico: su app <strong>tiene</strong> que correr bien en Android de gama media, porque ahí están sus usuarios.</div>
-</section>
-
-<section data-background-color="#ffffff">
-  <span class="tag tag-purple">Bloque 2 · Tipos de aplicaciones</span>
-  <h2>Tres formas de llegar a un teléfono</h2>
-  <div class="three-col">
-    <div class="card" style="border-top:4px solid var(--green-mid)">
-      <strong>Nativas</strong>
-      <p>Una base de código por plataforma, con las herramientas del fabricante.</p>
-      <div class="flow" style="margin:0.3em 0 0"><span class="fb fb-gray">Kotlin · Android</span><span class="fb fb-gray">Swift · iOS</span></div>
-      <p style="margin-top:0.3em">Máximo rendimiento y acceso total al hardware. Dos equipos, dos códigos.</p>
-    </div>
-    <div class="card" style="border-top:4px solid var(--purple-mid)">
-      <strong>Multiplataforma</strong>
-      <p>Una base de código que produce apps nativas para las dos plataformas.</p>
-      <div class="flow" style="margin:0.3em 0 0"><span class="fb fb-purple">React Native</span><span class="fb fb-gray">Flutter</span><span class="fb fb-gray">Kotlin Multiplatform</span></div>
-      <p style="margin-top:0.3em">Un equipo, un código, acceso al hardware a través de módulos nativos.</p>
-    </div>
-    <div class="card" style="border-top:4px solid var(--amber-mid)">
-      <strong>Web y PWA</strong>
-      <p>Una página web que se ve y se comporta como app.</p>
-      <div class="flow" style="margin:0.3em 0 0"><span class="fb fb-gray">HTML · CSS · JS</span></div>
-      <p style="margin-top:0.3em">Lo más barato y universal. Acceso limitado al hardware y no vive en la tienda.</p>
-    </div>
-  </div>
-  <div class="key-idea key-purple">Nosotros vamos por la del medio: React Native. Pero el lunes van a entender por qué, y cuándo <strong>no</strong> sería la respuesta correcta.</div>
-</section>
-
-<section data-background-color="#ffffff">
-  <span class="tag tag-purple">Bloque 2 · ¿Cuál elegir?</span>
-  <h2>Nativo o multiplataforma: lo que se gana y lo que se paga</h2>
-  <div class="two-col">
-    <div class="card" style="border-left:3px solid var(--green-mid)">
-      <strong>Nativo</strong>
-      <ul>
-        <li><strong>Gana:</strong> rendimiento máximo, acceso inmediato a cada novedad del sistema, la mejor experiencia posible.</li>
-        <li><strong>Paga:</strong> dos bases de código, dos equipos, el doble de tiempo y de costo de mantenimiento.</li>
-        <li><strong>Ideal para:</strong> apps complejas, gráficos pesados, hardware intensivo, empresas con presupuesto.</li>
-      </ul>
-    </div>
-    <div class="card" style="border-left:3px solid var(--purple-mid)">
-      <strong>Multiplataforma</strong>
-      <ul>
-        <li><strong>Gana:</strong> un solo equipo y un solo código, salir al mercado más rápido, mantenimiento más barato.</li>
-        <li><strong>Paga:</strong> una capa más entre tu código y el sistema; algunas cosas nativas requieren trabajo extra.</li>
-        <li><strong>Ideal para:</strong> la mayoría de apps de negocio, startups, MVPs, equipos pequeños.</li>
-      </ul>
-    </div>
-  </div>
-  <div class="key-idea key-purple">No hay tecnología buena o mala. Hay tecnología adecuada o inadecuada <strong>para un problema, un equipo y un presupuesto</strong>.</div>
-</section>
-
-<section data-background-color="#ffffff">
-  <span class="tag tag-purple">Bloque 2 · ¿Cuál elegir?</span>
-  <h2>Quién usa qué (y por qué importa)</h2>
-  <div class="three-col">
-    <div class="card" style="border-top:4px solid var(--purple-mid)">
-      <strong>React Native</strong>
-      <p>Meta (Facebook, Instagram), Microsoft (Office, Xbox), Shopify, Discord, Coinbase, Bluesky. Y la mayoría de las empresas de desarrollo móvil en El Salvador.</p>
-    </div>
-    <div class="card" style="border-top:4px solid var(--blue-mid)">
-      <strong>Flutter</strong>
-      <p>Google Pay, Nubank, BMW, Toyota, Alibaba. Creciendo rápido, sobre todo en startups y en Latinoamérica.</p>
-    </div>
-    <div class="card" style="border-top:4px solid var(--green-mid)">
-      <strong>Nativo y KMP</strong>
-      <p>Apps bancarias grandes, juegos, cámaras. Kotlin Multiplatform para compartir lógica entre plataformas (Netflix, Cash App).</p>
-    </div>
-  </div>
-  <p class="small" style="margin-top:0.3em">Dato histórico: Airbnb usó React Native y volvió a nativo en 2018 por su tamaño y complejidad. Las decisiones tecnológicas también se revierten.</p>
-  <div class="key-idea key-purple">Elegimos React Native porque es lo que más se usa en las empresas donde van a hacer la práctica, y porque JavaScript ya lo conocen. Es la decisión correcta <strong>para este contexto</strong>.</div>
-</section>
-
-<section data-background-color="#ffffff">
-  <span class="tag tag-amber">Bloque 2 · Casos prácticos</span>
-  <h2>Ahora ustedes: tres empresas, tres decisiones</h2>
-  <div class="two-col">
-    <div class="card">
-      <strong>Cómo</strong>
-      <ul>
-        <li>Grupos de 3 o 4.</li>
-        <li>8 minutos para los tres casos.</li>
-        <li>Para cada uno: ¿nativo, multiplataforma o web? y <strong>por qué</strong>.</li>
-        <li>No hay respuesta única. Hay respuestas bien o mal justificadas.</li>
-      </ul>
-    </div>
-    <div class="card">
-      <strong>Qué tener en cuenta</strong>
-      <ul>
-        <li>¿Qué tan intensivo es el uso del hardware?</li>
-        <li>¿Cuánto tiempo y presupuesto hay?</li>
-        <li>¿Qué equipo tienen o pueden contratar?</li>
-        <li>¿En cuántos dispositivos tiene que funcionar?</li>
-        <li>¿Qué pasa con el mantenimiento en dos años?</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<section data-background-color="#ffffff">
-  <span class="tag tag-amber">Bloque 2 · Caso 1</span>
-  <h2>La empresa de logística</h2>
-  <div class="caso" style="border-color:var(--amber-mid)">
-    <p>Una gran empresa de logística quiere desarrollar una aplicación para sus repartidores. La app les permitirá <strong>rastrear la ubicación en tiempo real</strong>, recibir <strong>notificaciones</strong> sobre entregas y registrar pruebas de entrega con <strong>fotos</strong>. Además, deberá funcionar sin problemas en <strong>cualquier modelo de teléfono</strong> y optimizar el <strong>consumo de batería</strong>.</p>
-  </div>
-  <p class="q">¿Nativo, multiplataforma o web? ¿Por qué? ¿Qué parte del caso pesa más en la decisión?</p>
-</section>
-
-<section data-background-color="#ffffff">
-  <span class="tag tag-amber">Bloque 2 · Caso 2</span>
-  <h2>Los emprendedores del coworking</h2>
-  <div class="caso" style="border-color:var(--amber-mid)">
-    <p>Un grupo de emprendedores quiere lanzar una plataforma donde las personas puedan <strong>reservar espacios de coworking</strong> desde su teléfono o computadora. Quieren <strong>validar la idea lo más rápido posible</strong> sin invertir demasiado dinero. La aplicación debe ser sencilla, pero accesible desde <strong>cualquier dispositivo</strong> y fácil de actualizar.</p>
-  </div>
-  <p class="q">¿Nativo, multiplataforma o web? ¿Por qué? ¿Qué cambiaría si el negocio funciona y crece?</p>
-</section>
-
-<section data-background-color="#ffffff">
-  <span class="tag tag-amber">Bloque 2 · Caso 3</span>
-  <h2>La fintech</h2>
-  <div class="caso" style="border-color:var(--amber-mid)">
-    <p>Una nueva fintech quiere lanzar una app bancaria para ofrecer transferencias, pagos y gestión de tarjetas virtuales. Permitirá recibir <strong>notificaciones</strong> de movimientos, activar o desactivar la tarjeta desde la app y realizar <strong>pagos con NFC</strong>. Quieren un diseño atractivo y que funcione en cualquier teléfono. El principal desafío: debe estar lista <strong>lo antes posible</strong>. El <strong>presupuesto no es problema</strong>.</p>
-  </div>
-  <p class="q">¿Nativo, multiplataforma o web? ¿Por qué? ¿Qué pesa más: la velocidad de salida o la seguridad y el NFC?</p>
-</section>
-
-<section data-background-color="#ffffff">
-  <span class="tag tag-amber">Bloque 2 · Puesta en común</span>
-  <h2>Lo que probablemente salió</h2>
-  <div class="three-col">
-    <div class="card"><strong>Logística</strong><p>Hardware intensivo (GPS continuo, cámara, batería) y "cualquier modelo" empujan a nativo o a multiplataforma con módulos nativos bien hechos. La batería es el argumento decisivo.</p></div>
-    <div class="card"><strong>Coworking</strong><p>Validar rápido, poco dinero, teléfono y computadora: web o PWA primero. Multiplataforma cuando el negocio lo justifique.</p></div>
-    <div class="card"><strong>Fintech</strong><p>NFC, seguridad y la mejor experiencia posible, con presupuesto: nativo. La velocidad se compra con equipo, no con atajos.</p></div>
-  </div>
-  <div class="key-idea key-amber">Fíjense en lo que acaban de hacer: no eligieron por moda. Eligieron por <strong>el problema</strong>. El lunes convertimos esa intuición en criterios concretos.</div>
-</section>
-
-<!-- ══════════════════════════════
-     BLOQUE 3 · CÓMO SE TRABAJA EN UNA EMPRESA
-     ══════════════════════════════ -->
-<section data-background-color="#ffffff" class="block-divider">
-  <div class="blk-num blk-3">3</div>
-  <h1>Cómo se trabaja en una empresa de desarrollo móvil</h1>
-  <p class="sub">Lo que van a encontrar en la práctica, contado desde adentro</p>
-  <div class="flow" style="justify-content:center">
-    <div class="fb fb-teal">Tarea</div><span class="arrow">→</span>
-    <div class="fb fb-teal">Rama</div><span class="arrow">→</span>
-    <div class="fb fb-teal">Pull request</div><span class="arrow">→</span>
-    <div class="fb fb-teal">Code review</div><span class="arrow">→</span>
-    <div class="fb fb-teal">QA</div><span class="arrow">→</span>
-    <div class="fb fb-teal">Release</div>
-  </div>
-</section>
-
-<!-- El requerimiento incompleto: cada quien asume un café distinto -->
-<section data-background-color="#ffffff" class="q-slide">
-  <span class="tag tag-teal">Bloque 3 · Conversemos</span>
-  <h1>Explíquenme, paso a paso, cómo se prepara una taza de café.</h1>
-  <div class="flow hints"><span class="fb fb-gray">Como si fuera para alguien que nunca lo ha hecho.</span><span class="fb fb-gray">¿En qué orden? ¿Qué pasa si no hay agua caliente? ¿Cuánto es "un poco" de azúcar?</span></div>
-</section>
-
-<section data-background-color="#ffffff" class="tight">
-  <span class="tag tag-teal">Bloque 3 · El flujo</span>
-  <h2>El ciclo de vida de una funcionalidad</h2>
-  <div class="three-col">
-    <div class="card"><strong>1. La tarea</strong><p>Nace en un tablero (Jira, Trello) con un qué y un para qué. Ustedes estiman cuánto toma; al principio se van a equivocar, y es normal.</p></div>
-    <div class="card"><strong>2. La rama y el PR</strong><p>Nadie toca <ic>main</ic> directo. Se trabaja en una rama y se abre un pull request con descripción clara y capturas.</p></div>
-    <div class="card"><strong>3. El code review</strong><p>Otra persona lee su código antes de que entre y pide cambios. No es personal: es la herramienta de calidad más barata que existe.</p></div>
-    <div class="card"><strong>4. QA</strong><p>Alguien intenta romper lo que hicieron: teléfono viejo, sin internet, girando la pantalla. Si no lo rompen ellos, lo rompe el usuario.</p></div>
-    <div class="card"><strong>5. El release</strong><p>Build firmado, versión numerada, notas de versión, lanzamiento por fases. Después, monitoreo de errores en producción.</p></div>
-    <div class="card"><strong>6. El mantenimiento</strong><p>La mayor parte de la vida de una app no es construirla: es mantenerla. Por eso importa escribir código que otro pueda leer.</p></div>
-  </div>
-</section>
-
-<section data-background-color="#ffffff" class="tight">
-  <span class="tag tag-teal">Bloque 3 · La práctica</span>
-  <h2>Lo que les van a pedir, y lo que nadie les dice</h2>
-  <div class="two-col">
-    <div class="card" style="border-left:3px solid var(--teal-mid)">
-      <strong>Lo que dice el papel</strong>
-      <ul>
-        <li>Integrarse a un equipo con una app ya en producción.</li>
-        <li>Implementar componentes de UI y consumir APIs internas.</li>
-        <li>Participar en code reviews: recibir y dar retroalimentación.</li>
-        <li>Usar Git y un tablero de tareas como parte del flujo diario.</li>
-        <li>Ayudar a encontrar y corregir errores en producción.</li>
-      </ul>
-    </div>
-    <div class="card" style="border-left:3px solid var(--amber-mid)">
-      <strong>Lo que nadie les dice</strong>
-      <ul>
-        <li>Preguntar temprano vale más que resolver tarde. Nadie espera que sepan todo; esperan que avisen.</li>
-        <li>El código que van a tocar lo escribió otra persona, hace tiempo, con prisa. Leer código es la mitad del trabajo.</li>
-        <li>Un PR pequeño y claro se aprueba en una hora. Uno gigante se queda semanas.</li>
-        <li>La IA les va a dar velocidad. El criterio para saber si lo que produjo está bien, lo ponen ustedes.</li>
-      </ul>
-    </div>
-  </div>
-  <div class="key-idea key-teal">Las empresas valoran menos cuánto React Native saben y más si entregan, preguntan, explican su código y cuidan <ic>main</ic>.</div>
-</section>
-
-<!-- ══════════════════════════════
      CIERRE
      ══════════════════════════════ -->
 <section data-background-color="#ffffff">
@@ -449,15 +202,15 @@
   <div class="three-col">
     <div class="sum-card" style="border-top:3px solid var(--blue-mid)">
       <div class="st">Cómo vamos a trabajar</div>
-      <p>Tres bloques, una app guía, desafíos semanales y tres talleres. Sin exámenes. Un proyecto en pareja que resuelve un problema real, y que en noviembre se piensa antes de programarse.</p>
+      <p>Una app guía que crece todo el módulo, desafíos semanales y tres talleres. Sin exámenes. Tres notas que evalúan lo conceptual, lo procedimental y lo actitudinal.</p>
+    </div>
+    <div class="sum-card" style="border-top:3px solid var(--amber-mid)">
+      <div class="st">El proyecto</div>
+      <p>En pareja, resuelve un problema real del entorno. Primero se piensa: propuesta y diseño el 27 de noviembre; versión 1 el 29 de enero; final y defensa el 5 de abril.</p>
     </div>
     <div class="sum-card" style="border-top:3px solid var(--purple-mid)">
-      <div class="st">El mundo móvil</div>
-      <p>Android domina, iOS exige. Nativo, multiplataforma o web no se eligen por moda sino por el problema, el equipo y el presupuesto. Ustedes ya lo hicieron con tres casos.</p>
-    </div>
-    <div class="sum-card" style="border-top:3px solid var(--teal-mid)">
-      <div class="st">La empresa</div>
-      <p>Tarea, rama, PR, code review, QA, release. Lo vamos a practicar todo el módulo para que la práctica no sea la primera vez.</p>
+      <div class="st">La IA</div>
+      <p>Permitida en el proyecto, documentada. En los talleres, primero sin ella. En la defensa, lo que no entiendan se nota. La velocidad la pone la IA; el criterio lo ponen ustedes.</p>
     </div>
   </div>
   <div class="key-idea key-blue">Si se llevan una sola idea: <strong>la app es la consecuencia; el problema es el inicio.</strong></div>
@@ -465,15 +218,16 @@
 
 <section data-background-color="#ffffff">
   <span class="tag tag-gray">Lo que viene</span>
-  <h2>Lunes 9: cómo funciona React Native por dentro</h2>
+  <h2>Lunes 9: el mundo móvil y cómo funciona React Native</h2>
   <div class="two-col">
     <div class="card">
       <strong>En clase</strong>
       <ul>
-        <li>Qué pasa entre tu JavaScript y la pantalla del teléfono.</li>
-        <li>Dos formas de crear un proyecto: React Native CLI y Expo. Vamos a ver las dos y a elegir con argumentos.</li>
-        <li>JavaScript moderno y TypeScript: lo justo para arrancar.</li>
-        <li>Demostración en vivo: cambiar el código y ver la app actualizarse al instante.</li>
+        <li>Android e iOS, y las tres formas de llegar a un teléfono.</li>
+        <li>Nativo, Flutter, React Native o Kotlin Multiplatform: cómo se elige, con tres casos reales para decidir en grupo.</li>
+        <li>Qué pasa entre su JavaScript y la pantalla del teléfono.</li>
+        <li>Dos formas de crear un proyecto: React Native CLI y Expo, en vivo.</li>
+        <li>Cómo se trabaja en una empresa de desarrollo móvil.</li>
       </ul>
     </div>
     <div class="card">

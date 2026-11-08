@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Desarrollo Móvil · Clase 2</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/white.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.min.css">
+<link rel="stylesheet" href="../../assets/deck.css">
+</head>
+<body>
+<div class="reveal"><div class="slides">
+
+<!-- ══════════════════════════════
+     PORTADA
+     ══════════════════════════════ -->
+<section data-background-color="#ffffff" style="text-align:center">
+  <span class="tag tag-gray" style="font-size:0.42em">Desarrollo Móvil · Ciclo III · 2026 · Sesión 2 · Lunes 9 de noviembre</span>
+  <h1 style="font-size:1.75em; margin:0.1em 0">El mundo móvil y cómo funciona React Native</h1>
+  <p style="font-size:0.65em; color:#888; margin:0.4em 0 0.9em">"Elegir una tecnología es una decisión de negocio disfrazada de decisión técnica."</p>
+  <div class="chips">
+    <span class="chip tag-purple">Bloque 1 · El mundo móvil</span>
+    <span class="chip tag-amber">Bloque 2 · ¿Cuál elegir?</span>
+    <span class="chip tag-teal">Bloque 3 · React Native por dentro</span>
+    <span class="chip tag-blue">Bloque 4 · La empresa</span>
+  </div>
+  <p style="font-size:0.56em; color:#444; font-weight:600; margin-top:1em">Docente: Alvaro García · React Native</p>
+</section>
+
+<!-- ══════════════════════════════
+     RECORDATORIO
+     ══════════════════════════════ -->
+<section data-background-color="#ffffff">
+  <span class="tag tag-gray">Recordatorio</span>
+  <h2>Dónde quedamos el jueves</h2>
+  <div class="three-col">
+    <div class="sum-card" style="border-top:3px solid var(--blue-mid)"><div class="st">Vimos</div><p>Cómo vamos a trabajar: una app guía que crece todo el módulo, desafíos, tres talleres y un proyecto en pareja que resuelve un problema real. La IA como herramienta, con reglas claras.</p></div>
+    <div class="sum-card" style="border-top:3px solid var(--purple-mid)"><div class="st">Quedó pendiente</div><p>El mundo móvil y cómo se trabaja en una empresa de desarrollo. Eso es hoy, más una pregunta nueva: qué pasa dentro de React Native cuando su app corre.</p></div>
+    <div class="sum-card" style="border-top:3px solid var(--amber-mid)"><div class="st">Para hoy</div><p>Pensar en un problema real de su entorno y en quién lo sufre. ¿Alguien ya tiene uno? Y los dos artículos sobre IA del LMS: los retomamos en la próxima clase.</p></div>
+  </div>
+  <div class="key-idea key-blue">Al final de hoy van a poder explicar por qué una empresa elige nativo, Flutter, React Native o Kotlin Multiplatform, y qué hay debajo de una app hecha con React Native.</div>
+</section>
+
+<!-- ══════════════════════════════
+     BLOQUE 1 · EL MUNDO MÓVIL
+     ══════════════════════════════ -->
+<section data-background-color="#ffffff" class="block-divider">
+  <div class="blk-num blk-purple">1</div>
+  <h1>El mundo móvil</h1>
+  <p class="sub">Dos sistemas operativos y tres formas de llegar a un teléfono</p>
+  <div class="flow" style="justify-content:center">
+    <div class="fb fb-purple">Las apps que usan</div><span class="arrow">→</span>
+    <div class="fb fb-purple">Android e iOS</div><span class="arrow">→</span>
+    <div class="fb fb-purple">Tipos de apps</div>
+  </div>
+</section>
+
+<section data-background-color="#ffffff" class="q-slide">
+  <span class="tag tag-purple">Bloque 1 · Conversemos</span>
+  <h1>¿Qué apps usan todos los días? ¿Qué les gusta y qué les molesta de ellas?</h1>
+  <div class="flow hints"><span class="fb fb-gray">WhatsApp, Instagram, el banco, Uber, TikTok…</span><span class="fb fb-gray">Cada una la hizo alguien resolviendo un problema. Ustedes van a hacer una real.</span></div>
+</section>
+
+<section data-background-color="#ffffff">
+  <span class="tag tag-purple">Bloque 1 · Sistemas operativos</span>
+  <h2>Dos sistemas, dos filosofías</h2>
+  <div class="two-col">
+    <div class="card" style="border-top:4px solid #3B6D11">
+      <strong>Android (Google)</strong>
+      <ul>
+        <li>Domina el mercado mundial: alrededor de 7 de cada 10 teléfonos. En El Salvador, la gran mayoría.</li>
+        <li>Basado en Linux y de código abierto (AOSP). Cada fabricante le pone su capa: Samsung, Xiaomi, Motorola.</li>
+        <li>Miles de modelos, versiones y tamaños de pantalla. Más libertad, más fragmentación.</li>
+        <li>Publicar es barato y rápido: Google Play.</li>
+      </ul>
+    </div>
+    <div class="card" style="border-top:4px solid #555">
+      <strong>iOS (Apple)</strong>
+      <ul>
+        <li>Solo en dispositivos Apple. Hardware y software controlados por una sola empresa.</li>
+        <li>Pocos modelos, actualizaciones rápidas, rendimiento y seguridad consistentes.</li>
+        <li>Reglas más estrictas para desarrolladores y una revisión más exigente en la App Store.</li>
+        <li>Para compilar se necesita una Mac, sin excepción.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="key-idea key-purple">Para ustedes esto significa algo muy práctico: su app <strong>tiene</strong> que correr bien en Android de gama media, porque ahí están sus usuarios.</div>
+</section>
+
+<section data-background-color="#ffffff">
+  <span class="tag tag-purple">Bloque 1 · Tipos de aplicaciones</span>
+  <h2>Tres formas de llegar a un teléfono</h2>
+  <div class="three-col">
+    <div class="card" style="border-top:4px solid var(--green-mid)">
+      <strong>Nativas</strong>
+      <p>Una base de código por plataforma, con las herramientas del fabricante.</p>
+      <div class="flow" style="margin:0.3em 0 0"><span class="fb fb-gray">Kotlin · Android</span><span class="fb fb-gray">Swift · iOS</span></div>
+      <p style="margin-top:0.3em">Máximo rendimiento y acceso total al hardware. Dos equipos, dos códigos.</p>
+    </div>
+    <div class="card" style="border-top:4px solid var(--purple-mid)">
+      <strong>Multiplataforma</strong>
+      <p>Una base de código que produce apps nativas para las dos plataformas.</p>
+      <div class="flow" style="margin:0.3em 0 0"><span class="fb fb-purple">React Native</span><span class="fb fb-gray">Flutter</span><span class="fb fb-gray">Kotlin Multiplatform</span></div>
+      <p style="margin-top:0.3em">Un equipo, un código, acceso al hardware a través de módulos nativos.</p>
+    </div>
+    <div class="card" style="border-top:4px solid var(--amber-mid)">
+      <strong>Web y PWA</strong>
+      <p>Una página web que se ve y se comporta como app.</p>
+      <div class="flow" style="margin:0.3em 0 0"><span class="fb fb-gray">HTML · CSS · JS</span></div>
+      <p style="margin-top:0.3em">Lo más barato y universal. Acceso limitado al hardware y no vive en la tienda.</p>
+    </div>
+  </div>
+  <div class="key-idea key-purple">Nosotros vamos por la del medio: React Native. En el siguiente bloque van a entender por qué, y cuándo <strong>no</strong> sería la respuesta correcta.</div>
+</section>
+
+<!-- ══════════════════════════════
+     BLOQUE 2 · ¿CUÁL ELEGIR?
+     ══════════════════════════════ -->
+<section data-background-color="#ffffff" class="block-divider">
+  <div class="blk-num blk-amber">2</div>
+  <h1>¿Cuál elegir?</h1>
+  <p class="sub">Cuatro formas de hacer una app hoy, y cómo se decide entre ellas</p>
+  <div class="flow" style="justify-content:center">
+    <div class="fb fb-green">Nativo</div><span class="arrow">·</span>
+    <div class="fb fb-blue">Flutter</div><span class="arrow">·</span>
+    <div class="fb fb-purple">React Native</div><span class="arrow">·</span>
+    <div class="fb fb-teal">Kotlin Multiplatform</div><span class="arrow">→</span>
+    <div class="fb fb-amber">Casos prácticos</div>
+  </div>
+</section>
+
+<section data-background-color="#ffffff" class="tight">
+  <span class="tag tag-amber">Bloque 2 · Las opciones</span>
+  <h2>Cuatro formas de hacer una app en 2026</h2>
+  <div class="four-col" style="font-size:0.9em">
+    <div class="card" style="border-top:4px solid var(--green-mid)">
+      <strong>Nativo</strong>
+      <p><strong>Kotlin</strong> en Android, <strong>Swift</strong> en iOS.</p>
+      <p style="margin-top:0.3em">Dos bases de código, dos equipos. La UI la dibuja el sistema y cada novedad de la plataforma llega el día uno.</p>
+      <p style="margin-top:0.3em"><strong>Para:</strong> bancos grandes, cámaras, juegos.</p>
+    </div>
+    <div class="card" style="border-top:4px solid var(--blue-mid)">
+      <strong>Flutter</strong>
+      <p><strong>Dart</strong>. Lo impulsa Google.</p>
+      <p style="margin-top:0.3em">Trae su propio motor gráfico y dibuja cada pixel: la UI es idéntica en Android e iOS porque no usa los componentes del sistema.</p>
+      <p style="margin-top:0.3em"><strong>Para:</strong> interfaces muy propias; también web y escritorio.</p>
+    </div>
+    <div class="card" style="border-top:4px solid var(--purple-mid)">
+      <strong>React Native</strong>
+      <p><strong>JavaScript / TypeScript</strong> con React. Lo impulsa Meta.</p>
+      <p style="margin-top:0.3em">Un solo código, pero los componentes son los nativos reales: un <ic>&lt;View&gt;</ic> es un View de Android o un UIView de iOS.</p>
+      <p style="margin-top:0.3em"><strong>Para:</strong> equipos que vienen de web, apps de negocio.</p>
+    </div>
+    <div class="card" style="border-top:4px solid var(--teal-mid)">
+      <strong>Kotlin Multiplatform</strong>
+      <p><strong>Kotlin</strong>. Lo impulsan JetBrains y Google.</p>
+      <p style="margin-top:0.3em">Se comparte la lógica (datos, red, reglas); la UI puede ser nativa en cada plataforma o compartida con Compose Multiplatform.</p>
+      <p style="margin-top:0.3em"><strong>Para:</strong> equipos Android que quieren llegar a iOS.</p>
+    </div>
+  </div>
+  <p class="small" style="margin-top:0.25em">Las cuatro dan apps nativas que se instalan desde la tienda. Lo que cambia es quién escribe la UI, quién la dibuja y qué equipo hace falta.</p>
+</section>
+
+<section data-background-color="#ffffff">
+  <span class="tag tag-amber">Bloque 2 · La diferencia que importa</span>
+  <h2>¿Quién dibuja la pantalla?</h2>
+  <div class="two-col">
+    <div class="card" style="border-left:3px solid var(--purple-mid)">
+      <strong>Usa los componentes del sistema</strong>
+      <div class="flow" style="margin:0.2em 0 0.3em"><span class="fb fb-green">Nativo</span><span class="fb fb-purple">React Native</span><span class="fb fb-teal">KMP con UI nativa</span></div>
+      <ul>
+        <li>Un botón <strong>es</strong> un botón de Android o de iOS: hereda el look, la accesibilidad y los cambios de cada versión del sistema.</li>
+        <li>Se ve ligeramente distinto en cada plataforma, y eso es lo que el usuario espera.</li>
+        <li>Lo que paga: depende de que el sistema tenga el componente, o de un módulo nativo.</li>
+      </ul>
+    </div>
+    <div class="card" style="border-left:3px solid var(--blue-mid)">
+      <strong>Dibuja sus propios pixeles</strong>
+      <div class="flow" style="margin:0.2em 0 0.3em"><span class="fb fb-blue">Flutter</span><span class="fb fb-teal">Compose Multiplatform</span></div>
+      <ul>
+        <li>Un botón es un <strong>dibujo</strong> de un botón, hecho por el motor del framework. Idéntico en todas partes.</li>
+        <li>Control total: animaciones y diseños que el sistema no ofrece se hacen sin pedir permiso.</li>
+        <li>Lo que paga: imitar el comportamiento del sistema (teclado, gestos, accesibilidad) y un binario más pesado.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="key-idea key-amber">Un botón de React Native <strong>es</strong> un botón de Android. Un botón de Flutter es un <strong>dibujo</strong> de un botón de Android. Los dos funcionan; cambia quién manda.</div>
+</section>
+
+<section data-background-color="#ffffff">
+  <span class="tag tag-amber">Bloque 2 · Comparación</span>
+  <h2>La tabla que se van a llevar</h2>
+  <table class="cmp">
+    <thead><tr><th></th><th>Nativo</th><th>Flutter</th><th class="hl">React Native</th><th>Kotlin Multiplatform</th></tr></thead>
+    <tbody>
+      <tr><td>Lenguaje</td><td>Kotlin y Swift</td><td>Dart</td><td class="hl">JavaScript / TypeScript</td><td>Kotlin</td></tr>
+      <tr><td>Quién dibuja la UI</td><td>El sistema</td><td>Flutter, con Impeller</td><td class="hl">El sistema, orquestado desde JS</td><td>El sistema, o Compose Multiplatform</td></tr>
+      <tr><td>Código compartido</td><td>Ninguno</td><td>Casi todo</td><td class="hl">Casi todo</td><td>La lógica; la UI es opcional</td></tr>
+      <tr><td>Rendimiento</td><td>El máximo posible</td><td>Muy alto y constante</td><td class="hl">Alto; depende de no bloquear el hilo de JS</td><td>Nativo</td></tr>
+      <tr><td>Equipo típico</td><td>Dos equipos</td><td>Uno, que aprende Dart</td><td class="hl">Uno; ideal si ya sabe web</td><td>Uno, fuerte en Android</td></tr>
+      <tr><td>Lo respaldan</td><td>Google y Apple</td><td>Google</td><td class="hl">Meta, Microsoft, Expo, Shopify</td><td>JetBrains y Google</td></tr>
+      <tr><td>Dónde lo van a ver</td><td>En todo lo que los demás imitan</td><td>Startups y productos con UI propia</td><td class="hl">En la mayoría de empresas de aquí</td><td>En equipos Android grandes</td></tr>
+    </tbody>
+  </table>
+  <p class="small" style="margin-top:0.2em">Todas tienen hot reload, acceso al hardware y camino a las dos tiendas. Eso ya no diferencia a nadie.</p>
+</section>
+
+<section data-background-color="#ffffff" class="tight">
+  <span class="tag tag-amber">Bloque 2 · En el mundo real</span>
+  <h2>Quién usa qué (y por qué importa)</h2>
+  <div class="four-col" style="font-size:0.95em">
+    <div class="card" style="border-top:4px solid var(--green-mid)">
+      <strong>Nativo</strong>
+      <p>WhatsApp, Uber, las apps de Google y de Apple, los bancos grandes, las cámaras y los juegos.</p>
+    </div>
+    <div class="card" style="border-top:4px solid var(--blue-mid)">
+      <strong>Flutter</strong>
+      <p>Google Pay, Google Ads, BMW, Toyota, Alibaba, Nubank. Fuerte en startups y en Latinoamérica.</p>
+    </div>
+    <div class="card" style="border-top:4px solid var(--purple-mid)">
+      <strong>React Native</strong>
+      <p>Meta (Facebook, Instagram), Microsoft (Office, Xbox), Shopify, Discord, Coinbase, Bluesky. Y la mayoría de las empresas de desarrollo móvil del país.</p>
+    </div>
+    <div class="card" style="border-top:4px solid var(--teal-mid)">
+      <strong>Kotlin Multiplatform</strong>
+      <p>Netflix, McDonald's, Cash App, Forbes, Duolingo, Todoist. Casi siempre lógica compartida con UI nativa.</p>
+    </div>
+  </div>
+  <p class="small" style="margin-top:0.3em">Y se revierten: Airbnb dejó React Native en 2018 por su tamaño; Shopify movió todas sus apps a React Native en 2020. No cambió la calidad de la decisión, cambió el problema.</p>
+  <div class="key-idea key-amber">Elegimos React Native porque es lo que más se usa en las empresas donde van a hacer la práctica, y porque JavaScript ya lo conocen. Es la decisión correcta <strong>para este contexto</strong>.</div>
+</section>
+
+<section data-background-color="#ffffff">
+  <span class="tag tag-amber">Bloque 2 · Criterios</span>
+  <h2>Cinco preguntas antes de elegir</h2>
+  <div class="tl">
+    <div class="step" style="border-color:var(--amber-mid)"><div class="when">1 · Producto</div><strong>¿Qué hace la app?</strong><p>Pantallas de negocio y formularios, o GPS continuo, cámara, gráficos pesados, NFC.</p></div>
+    <div class="step" style="border-color:var(--amber-mid)"><div class="when">2 · Equipo</div><strong>¿Quién la construye y la mantiene?</strong><p>Lo que el equipo ya sabe pesa más que lo que está de moda.</p></div>
+    <div class="step" style="border-color:var(--amber-mid)"><div class="when">3 · Tiempo y dinero</div><strong>¿Cuánto hay?</strong><p>Dos bases de código cuestan el doble hoy y el doble cada año.</p></div>
+    <div class="step" style="border-color:var(--amber-mid)"><div class="when">4 · Ecosistema</div><strong>¿Qué necesito integrar?</strong><p>Pasarelas de pago, mapas, SDKs del cliente: ¿existen para esa tecnología?</p></div>
+    <div class="step" style="border-color:var(--amber-mid)"><div class="when">5 · Alcance</div><strong>¿Dónde tiene que correr?</strong><p>Solo Android, las dos tiendas, también web o escritorio.</p></div>
+  </div>
+  <div class="key-idea key-amber">La respuesta correcta cambia si cambia el equipo o el presupuesto. Por eso no se memoriza: se practica. Vamos a hacerlo con tres casos.</div>
+</section>
+
+<section data-background-color="#ffffff">
+  <span class="tag tag-amber">Bloque 2 · Casos prácticos</span>
+  <h2>Ahora ustedes: tres empresas, tres decisiones</h2>
+  <div class="two-col">
+    <div class="card">
+      <strong>Cómo</strong>
+      <ul>
+        <li>Grupos de 3 o 4.</li>
+        <li>8 minutos para los tres casos.</li>
+        <li>Para cada uno: ¿nativo, Flutter, React Native, Kotlin Multiplatform o web? y <strong>por qué</strong>.</li>
+        <li>No hay respuesta única. Hay respuestas bien o mal justificadas.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <strong>Qué tener en cuenta</strong>
+      <ul>
+        <li>¿Qué tan intensivo es el uso del hardware?</li>
+        <li>¿Cuánto tiempo y presupuesto hay?</li>
+        <li>¿Qué equipo tienen o pueden contratar?</li>
+        <li>¿En cuántos dispositivos tiene que funcionar?</li>
+        <li>¿Qué pasa con el mantenimiento en dos años?</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section data-background-color="#ffffff">
+  <span class="tag tag-amber">Bloque 2 · Caso 1</span>
+  <h2>La empresa de logística</h2>
+  <div class="caso" style="border-color:var(--amber-mid)">
+    <p>Una gran empresa de logística quiere desarrollar una aplicación para sus repartidores. La app les permitirá <strong>rastrear la ubicación en tiempo real</strong>, recibir <strong>notificaciones</strong> sobre entregas y registrar pruebas de entrega con <strong>fotos</strong>. Además, deberá funcionar sin problemas en <strong>cualquier modelo de teléfono</strong> y optimizar el <strong>consumo de batería</strong>.</p>
+  </div>
+  <p class="q">¿Con qué la harían y por qué? ¿Qué parte del caso pesa más en la decisión?</p>
+</section>
+
+<section data-background-color="#ffffff">
+  <span class="tag tag-amber">Bloque 2 · Caso 2</span>
+  <h2>Los emprendedores del coworking</h2>
+  <div class="caso" style="border-color:var(--amber-mid)">
+    <p>Un grupo de emprendedores quiere lanzar una plataforma donde las personas puedan <strong>reservar espacios de coworking</strong> desde su teléfono o computadora. Quieren <strong>validar la idea lo más rápido posible</strong> sin invertir demasiado dinero. La aplicación debe ser sencilla, pero accesible desde <strong>cualquier dispositivo</strong> y fácil de actualizar.</p>
+  </div>
+  <p class="q">¿Con qué la harían y por qué? ¿Qué cambiaría si el negocio funciona y crece?</p>
+</section>
+
+<section data-background-color="#ffffff">
+  <span class="tag tag-amber">Bloque 2 · Caso 3</span>
+  <h2>La fintech</h2>
+  <div class="caso" style="border-color:var(--amber-mid)">
+    <p>Una nueva fintech quiere lanzar una app bancaria para ofrecer transferencias, pagos y gestión de tarjetas virtuales. Permitirá recibir <strong>notificaciones</strong> de movimientos, activar o desactivar la tarjeta desde la app y realizar <strong>pagos con NFC</strong>. Quieren un diseño atractivo y que funcione en cualquier teléfono. El principal desafío: debe estar lista <strong>lo antes posible</strong>. El <strong>presupuesto no es problema</strong>.</p>
+  </div>
+  <p class="q">¿Con qué la harían y por qué? ¿Qué pesa más: la velocidad de salida o la seguridad y el NFC?</p>
+</section>
+
+<section data-background-color="#ffffff">
+  <span class="tag tag-amber">Bloque 2 · Puesta en común</span>
+  <h2>Lo que probablemente salió</h2>
+  <div class="three-col">
+    <div class="card"><strong>Logística</strong><p>GPS continuo, cámara y batería en "cualquier modelo" empujan a nativo, o a React Native o Flutter con módulos nativos bien hechos. Si el equipo ya es Android, KMP es una salida elegante. La batería es el argumento decisivo.</p></div>
+    <div class="card"><strong>Coworking</strong><p>Validar rápido, poco dinero, teléfono y computadora: web o PWA primero. Cuando el negocio lo justifique, React Native tiene una ventaja: el equipo y parte del código ya son React.</p></div>
+    <div class="card"><strong>Fintech</strong><p>NFC, seguridad y la mejor experiencia posible, con presupuesto: nativo, o KMP compartiendo la lógica con UI nativa. La velocidad se compra con equipo, no con atajos.</p></div>
+  </div>
+  <div class="key-idea key-amber">Fíjense en lo que acaban de hacer: no eligieron por moda, eligieron por <strong>el problema</strong>. Ahora veamos qué hay dentro de la opción que elegimos nosotros.</div>
+</section>
+
+<!-- ══════════════════════════════
+     BLOQUE 3 · REACT NATIVE POR DENTRO
+     ══════════════════════════════ -->
+<section data-background-color="#ffffff" class="block-divider">
+  <div class="blk-num blk-teal">3</div>
+  <h1>Cómo funciona React Native por dentro</h1>
+  <p class="sub">Qué pasa entre su JavaScript y la pantalla del teléfono</p>
+  <div class="flow" style="justify-content:center">
+    <div class="fb fb-teal">Su código</div><span class="arrow">→</span>
+    <div class="fb fb-teal">Metro</div><span class="arrow">→</span>
+    <div class="fb fb-teal">Hermes</div><span class="arrow">→</span>
+    <div class="fb fb-teal">React</div><span class="arrow">→</span>
+    <div class="fb fb-teal">Fabric</div><span class="arrow">→</span>
+    <div class="fb fb-teal">Vistas nativas</div>
+  </div>
+</section>
+
+<section data-background-color="#ffffff">
+  <span class="tag tag-teal">Bloque 3 · Primero, lo que no es</span>
+  <h2>Tres mitos que van a escuchar</h2>
+  <div class="two-col">
+    <div class="card" style="border-left:3px solid var(--red-mid)">
+      <strong style="color:var(--red-dark)">Lo que React Native no es</strong>
+      <ul>
+        <li><strong>No es una página web dentro de una app.</strong> Eso es una app híbrida (Ionic, Cordova): un WebView mostrando HTML.</li>
+        <li><strong>No traduce su código a Kotlin o Swift.</strong> Su JavaScript sigue siendo JavaScript y se ejecuta dentro de la app.</li>
+        <li><strong>No es "lento por definición".</strong> Esa fama viene de una arquitectura que ya no existe. Lo vemos en dos slides.</li>
+      </ul>
+    </div>
+    <div class="card" style="border-left:3px solid var(--teal-mid)">
+      <strong style="color:var(--teal-dark)">Lo que sí es</strong>
+      <ul>
+        <li>Una app nativa de verdad, compilada con Gradle o Xcode, instalada desde la tienda.</li>
+        <li>Con un motor de JavaScript adentro que decide <strong>qué vistas nativas mostrar</strong> y <strong>qué hacer</strong> cuando el usuario toca algo.</li>
+        <li>Con un puente directo al código nativo para todo lo que el teléfono sabe hacer: cámara, GPS, base de datos, notificaciones.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="key-idea key-teal">React Native es una app nativa cuya lógica y cuyo árbol de interfaz los decide JavaScript.</div>
+</section>
+
+<section data-background-color="#ffffff">
+  <span class="tag tag-teal">Bloque 3 · El recorrido</span>
+  <h2>Qué pasa cuando corre su app</h2>
+  <div class="tl">
+    <div class="step" style="border-color:var(--teal-mid)"><div class="when">1 · Metro</div><strong>Empaqueta</strong><p>Une sus archivos TSX en un solo bundle de JavaScript. En desarrollo lo sirve por red: por eso un cambio se ve al instante (Fast Refresh).</p></div>
+    <div class="step" style="border-color:var(--teal-mid)"><div class="when">2 · Hermes</div><strong>Ejecuta</strong><p>El motor de JavaScript de Meta, hecho para móvil. Precompila a bytecode para que la app abra rápido y use poca memoria.</p></div>
+    <div class="step" style="border-color:var(--teal-mid)"><div class="when">3 · React</div><strong>Decide</strong><p>Compara el árbol de componentes antes y después de cada cambio y calcula lo mínimo que hay que tocar en pantalla.</p></div>
+    <div class="step" style="border-color:var(--teal-mid)"><div class="when">4 · Fabric</div><strong>Renderiza</strong><p>Crea o actualiza las vistas nativas reales. <ic>&lt;View&gt;</ic> es un UIView o un android.view.View; <ic>&lt;Text&gt;</ic> es un UILabel o un TextView.</p></div>
+    <div class="step" style="border-color:var(--teal-mid)"><div class="when">5 · TurboModules</div><strong>Conectan</strong><p>Cámara, GPS, SQLite: código Kotlin, Swift o C++ expuesto a JavaScript a través de JSI, sin serializar JSON ni esperar.</p></div>
+  </div>
+  <div class="key-idea key-teal">Su código decide <strong>qué</strong>; el sistema operativo sigue dibujando <strong>cómo</strong>. Por eso la app se siente nativa: lo es.</div>
+</section>
+
+<section data-background-color="#ffffff">
+  <span class="tag tag-teal">Bloque 3 · Así se ve</span>
+  <h2>Un componente, y lo que crea en el teléfono</h2>
+  <div class="code-row">
+    <pre><code class="language-tsx">import { View, Text, Pressable } from 'react-native';
+
+export function Saludo() {
+  return (
+    &lt;View style={{ padding: 16 }}&gt;
+      &lt;Text&gt;Hola, Retos&lt;/Text&gt;
+      &lt;Pressable onPress={() =&gt; console.log('tocado')}&gt;
+        &lt;Text&gt;Tóqueme&lt;/Text&gt;
+      &lt;/Pressable&gt;
+    &lt;/View&gt;
+  );
+}</code></pre>
+    <div>
+      <div class="card" style="border-left:3px solid var(--teal-mid); margin-bottom:8px">
+        <strong>En Android</strong>
+        <p><ic>View</ic> → ViewGroup · <ic>Text</ic> → TextView · el toque llega como un evento nativo y termina ejecutando su función <ic>onPress</ic> en JavaScript.</p>
+      </div>
+      <div class="card" style="border-left:3px solid var(--teal-mid); margin-bottom:8px">
+        <strong>En iOS</strong>
+        <p><ic>View</ic> → UIView · <ic>Text</ic> → UILabel · el mismo archivo, sin cambiar una línea.</p>
+      </div>
+      <div class="card">
+        <strong>No se preocupen por la sintaxis</strong>
+        <p>El jueves la vamos a leer línea por línea. Hoy solo importa ver que esto <strong>no es HTML</strong>: no hay div, no hay button.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-background-color="#ffffff">
+  <span class="tag tag-teal">Bloque 3 · Dentro de la app</span>
+  <h2>Tres hilos que conviene conocer desde hoy</h2>
+  <div class="three-col">
+    <div class="card" style="border-top:4px solid var(--teal-mid)">
+      <strong>Hilo de JavaScript</strong>
+      <p>Donde corre su código: la lógica, los estados, las decisiones de React. Uno solo. Si lo bloquean con un cálculo pesado, la app "no responde" aunque siga viva.</p>
+    </div>
+    <div class="card" style="border-top:4px solid var(--teal-mid)">
+      <strong>Hilo principal (UI)</strong>
+      <p>El del sistema operativo: dibuja las vistas y recibe los toques. Fabric lo usa para crear y actualizar la pantalla.</p>
+    </div>
+    <div class="card" style="border-top:4px solid var(--teal-mid)">
+      <strong>Hilos nativos de fondo</strong>
+      <p>Red, disco, base de datos, cámara. Los módulos nativos trabajan ahí y avisan cuando terminan. Por eso casi todo en móvil es asíncrono.</p>
+    </div>
+  </div>
+  <div class="key-idea key-teal">Guarden esta imagen: en enero, cuando hablemos de asincronía y de estados de carga, todo se explica con estos tres hilos.</div>
+</section>
+
+<section data-background-color="#ffffff">
+  <span class="tag tag-teal">Bloque 3 · Antes y ahora</span>
+  <h2>Del bridge a la Nueva Arquitectura</h2>
+  <div class="two-col">
+    <div class="card" style="border-left:3px solid #999">
+      <strong>Antes: el bridge (2015 a 2024)</strong>
+      <ul>
+        <li>JavaScript y el código nativo se hablaban por <strong>mensajes JSON asíncronos</strong>, en lotes.</li>
+        <li>Cada toque, cada scroll, cada medida de una vista cruzaba ese puente. En listas largas y animaciones se notaba.</li>
+        <li>De aquí viene la fama de "React Native es lento".</li>
+      </ul>
+    </div>
+    <div class="card" style="border-left:3px solid var(--teal-mid)">
+      <strong>Ahora: JSI, Fabric y TurboModules</strong>
+      <ul>
+        <li><strong>JSI</strong>: JavaScript llama a C++ directo, de forma síncrona, sin JSON.</li>
+        <li><strong>Fabric</strong> renderiza en varios hilos y puede medir y dibujar sin esperar al siguiente lote.</li>
+        <li><strong>TurboModules</strong> se cargan solo cuando se usan. Desde React Native 0.82 (octubre de 2025) esta es la <strong>única</strong> arquitectura: el bridge ya no existe.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="key-idea key-teal">Cuando lean "React Native es lento" en un artículo o se lo diga una IA, miren la fecha de lo que está citando.</div>
+</section>
+
+<section data-background-color="#ffffff">
+  <span class="tag tag-teal">Bloque 3 · Dos formas de empezar</span>
+  <h2>React Native CLI y Expo</h2>
+  <div class="two-col">
+    <div class="card" style="border-top:4px solid var(--teal-mid)">
+      <strong>React Native CLI</strong>
+      <ul>
+        <li>El proyecto trae las carpetas <ic>android/</ic> e <ic>ios/</ic> a la vista. Ustedes compilan con Gradle y con Xcode.</li>
+        <li>Necesitan Android Studio en su máquina, y una Mac para iOS.</li>
+        <li>Cualquier librería nativa entra sin intermediarios. Control total, y también toda la responsabilidad.</li>
+        <li>Así están la mayoría de las apps con años en producción.</li>
+      </ul>
+    </div>
+    <div class="card" style="border-top:4px solid var(--purple-mid)">
+      <strong>Expo</strong>
+      <ul>
+        <li>Un framework encima de React Native: router, librerías ya configuradas y herramientas de construcción.</li>
+        <li><strong>Expo Go</strong>: prueban en su teléfono escaneando un QR, sin compilar nada. <strong>EAS</strong> compila en la nube, iOS incluido, sin Mac.</li>
+        <li>Las carpetas nativas se generan cuando hacen falta (prebuild). Mucha magia útil.</li>
+        <li>Es lo que la documentación oficial recomienda para un proyecto nuevo.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="key-idea key-teal">El código de React Native es el mismo en los dos. Lo que cambia es <strong>cuánto de lo nativo ven y manejan ustedes</strong>.</div>
+</section>
+
+<section data-background-color="#ffffff">
+  <span class="tag tag-teal">Bloque 3 · Nuestra decisión</span>
+  <h2>En este módulo usamos React Native CLI</h2>
+  <div class="two-col">
+    <div class="card" style="border-left:3px solid var(--teal-mid)">
+      <strong>Por qué</strong>
+      <ul>
+        <li>Van a ver Android e iOS por dentro: <ic>AndroidManifest.xml</ic>, Gradle, <ic>Info.plist</ic>, el keystore. Lo necesitan para permisos y para publicar, y es lo que tocan en una app real.</li>
+        <li>Cuando una librería nativa falle, van a entender <strong>qué</strong> falló, en vez de ver un error que una herramienta escondió.</li>
+        <li>Lo que cuesta: una instalación más pesada y una primera compilación lenta. Por eso hay una guía y la tarea de hoy.</li>
+      </ul>
+    </div>
+    <div class="card" style="border-left:3px solid var(--purple-mid)">
+      <strong>Y Expo, con honestidad</strong>
+      <ul>
+        <li>Es excelente y seguramente lo usen en algún trabajo. No lo evitamos por malo; lo dejamos para después por pedagogía.</li>
+        <li>Cuando entiendan lo que Expo hace por ustedes, lo aprenden en una tarde. Al revés no funciona igual.</li>
+        <li>Si la empresa de la práctica usa Expo, van a estar cómodos: los componentes, los hooks y la navegación son los mismos.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="key-idea key-teal">Aprender con CLI es aprender a manejar con caja mecánica: después, la automática se entiende sola.</div>
+</section>
+
+<section data-background-color="#ffffff">
+  <span class="tag tag-teal">Bloque 3 · Demostración</span>
+  <h2>Los dos en vivo, desde cero</h2>
+  <div class="two-col">
+    <div class="card" style="border-top:4px solid var(--teal-mid)">
+      <strong>React Native CLI</strong>
+      <pre style="margin:0.3em 0"><code class="language-bash">npx @react-native-community/cli@latest init DemoCli
+cd DemoCli
+npm run android</code></pre>
+      <p>Qué mirar: las carpetas <ic>android/</ic> e <ic>ios/</ic>, lo que descarga Gradle la primera vez y cuánto tarda, y la app apareciendo en el emulador.</p>
+    </div>
+    <div class="card" style="border-top:4px solid var(--purple-mid)">
+      <strong>Expo</strong>
+      <pre style="margin:0.3em 0"><code class="language-bash">npx create-expo-app@latest DemoExpo
+cd DemoExpo
+npx expo start</code></pre>
+      <p>Qué mirar: no hay carpetas nativas, el QR, Expo Go abriendo la app en el teléfono en segundos.</p>
+    </div>
+  </div>
+  <div class="key-idea key-teal">En los dos vamos a cambiar un texto en <ic>App.tsx</ic> y verlo en pantalla sin recompilar. Eso es Fast Refresh, y va a ser su mejor amigo.</div>
+</section>
+
+<section data-background-color="#ffffff" class="tight">
+  <span class="tag tag-green">Tarea · Para el jueves 12</span>
+  <h2>El entorno listo antes de la próxima clase</h2>
+  <div class="two-col">
+    <div class="card" style="border-left:3px solid var(--green-mid)">
+      <strong>Qué hacer</strong>
+      <ul>
+        <li>Seguir la <a href="../guia-instalacion/" target="_blank"><strong>guía de instalación</strong></a> (Windows y Mac): Node.js LTS, JDK 17, Android Studio con el SDK y un emulador, o un teléfono Android con depuración USB.</li>
+        <li>Correr <ic>npx @react-native-community/cli@latest doctor</ic> hasta que todo quede en verde.</li>
+        <li>Subir la captura al LMS <strong>antes del miércoles a las 9 de la noche</strong>. Si algo falla, suban la captura del error: así llego sabiendo a quién ayudar.</li>
+      </ul>
+    </div>
+    <div class="card" style="border-left:3px solid var(--amber-mid)">
+      <strong>Antes de instalar</strong>
+      <ul>
+        <li>Windows 10 u 11, o macOS. 8 GB de RAM como mínimo (16 es lo cómodo) y unos 20 GB libres.</li>
+        <li>Si la laptop es justa, un teléfono Android por cable es mejor que pelearse con el emulador.</li>
+        <li>Instalen en el orden de la guía: casi todos los problemas vienen de saltarse un paso o de otra versión de JDK.</li>
+        <li>No instalen Expo ni nada extra todavía.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="key-idea key-green">El jueves los primeros 20 minutos son para destrabar instalaciones. Quien llegue con el <ic>doctor</ic> en verde, sale con la app corriendo en su teléfono.</div>
+</section>
+
+<!-- ══════════════════════════════
+     BLOQUE 4 · CÓMO SE TRABAJA EN UNA EMPRESA
+     ══════════════════════════════ -->
+<section data-background-color="#ffffff" class="block-divider">
+  <div class="blk-num blk-blue">4</div>
+  <h1>Cómo se trabaja en una empresa de desarrollo móvil</h1>
+  <p class="sub">Lo que van a encontrar en la práctica, contado desde adentro</p>
+  <div class="flow" style="justify-content:center">
+    <div class="fb fb-blue">Tarea</div><span class="arrow">→</span>
+    <div class="fb fb-blue">Rama</div><span class="arrow">→</span>
+    <div class="fb fb-blue">Pull request</div><span class="arrow">→</span>
+    <div class="fb fb-blue">Code review</div><span class="arrow">→</span>
+    <div class="fb fb-blue">QA</div><span class="arrow">→</span>
+    <div class="fb fb-blue">Release</div>
+  </div>
+</section>
+
+<!-- El requerimiento incompleto: cada quien asume un café distinto -->
+<section data-background-color="#ffffff" class="q-slide">
+  <span class="tag tag-blue">Bloque 4 · Conversemos</span>
+  <h1>Explíquenme, paso a paso, cómo se prepara una taza de café.</h1>
+  <div class="flow hints"><span class="fb fb-gray">Como si fuera para alguien que nunca lo ha hecho.</span><span class="fb fb-gray">¿En qué orden? ¿Qué pasa si no hay agua caliente? ¿Cuánto es "un poco" de azúcar?</span></div>
+</section>
+
+<section data-background-color="#ffffff" class="tight">
+  <span class="tag tag-blue">Bloque 4 · El flujo</span>
+  <h2>El ciclo de vida de una funcionalidad</h2>
+  <div class="three-col">
+    <div class="card"><strong>1. La tarea</strong><p>Nace en un tablero (Jira, Trello) con un qué y un para qué. Ustedes estiman cuánto toma; al principio se van a equivocar, y es normal.</p></div>
+    <div class="card"><strong>2. La rama y el PR</strong><p>Nadie toca <ic>main</ic> directo. Se trabaja en una rama y se abre un pull request con descripción clara y capturas.</p></div>
+    <div class="card"><strong>3. El code review</strong><p>Otra persona lee su código antes de que entre y pide cambios. No es personal: es la herramienta de calidad más barata que existe.</p></div>
+    <div class="card"><strong>4. QA</strong><p>Alguien intenta romper lo que hicieron: teléfono viejo, sin internet, girando la pantalla. Si no lo rompen ellos, lo rompe el usuario.</p></div>
+    <div class="card"><strong>5. El release</strong><p>Build firmado, versión numerada, notas de versión, lanzamiento por fases. Después, monitoreo de errores en producción.</p></div>
+    <div class="card"><strong>6. El mantenimiento</strong><p>La mayor parte de la vida de una app no es construirla: es mantenerla. Por eso importa escribir código que otro pueda leer.</p></div>
+  </div>
+  <div class="key-idea key-blue">El café de hace un momento es la tarea del punto 1: nunca llega completa. Preguntar lo que falta <strong>antes</strong> de programar es parte del trabajo.</div>
+</section>
+
+<section data-background-color="#ffffff" class="tight">
+  <span class="tag tag-blue">Bloque 4 · La práctica</span>
+  <h2>Lo que les van a pedir, y lo que nadie les dice</h2>
+  <div class="two-col">
+    <div class="card" style="border-left:3px solid var(--blue-mid)">
+      <strong>Lo que dice el papel</strong>
+      <ul>
+        <li>Integrarse a un equipo con una app ya en producción.</li>
+        <li>Implementar componentes de UI y consumir APIs internas.</li>
+        <li>Participar en code reviews: recibir y dar retroalimentación.</li>
+        <li>Usar Git y un tablero de tareas como parte del flujo diario.</li>
+        <li>Ayudar a encontrar y corregir errores en producción.</li>
+      </ul>
+    </div>
+    <div class="card" style="border-left:3px solid var(--amber-mid)">
+      <strong>Lo que nadie les dice</strong>
+      <ul>
+        <li>Preguntar temprano vale más que resolver tarde. Nadie espera que sepan todo; esperan que avisen.</li>
+        <li>El código que van a tocar lo escribió otra persona, hace tiempo, con prisa. Leer código es la mitad del trabajo.</li>
+        <li>Un PR pequeño y claro se aprueba en una hora. Uno gigante se queda semanas.</li>
+        <li>La IA les va a dar velocidad. El criterio para saber si lo que produjo está bien, lo ponen ustedes.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="key-idea key-blue">Las empresas valoran menos cuánto React Native saben y más si entregan, preguntan, explican su código y cuidan <ic>main</ic>.</div>
+</section>
+
+<!-- ══════════════════════════════
+     CIERRE
+     ══════════════════════════════ -->
+<section data-background-color="#ffffff">
+  <span class="tag tag-gray">Resumen</span>
+  <h2>Lo que vimos hoy</h2>
+  <div class="three-col">
+    <div class="sum-card" style="border-top:3px solid var(--purple-mid)">
+      <div class="st">El mundo móvil</div>
+      <p>Android domina, iOS exige. Nativo, multiplataforma o web no se eligen por moda sino por el problema, el equipo y el presupuesto.</p>
+    </div>
+    <div class="sum-card" style="border-top:3px solid var(--amber-mid)">
+      <div class="st">Cuál elegir</div>
+      <p>Nativo, Flutter, React Native y Kotlin Multiplatform: la diferencia de fondo es quién dibuja la pantalla y qué equipo hace falta. Ustedes ya decidieron con tres casos.</p>
+    </div>
+    <div class="sum-card" style="border-top:3px solid var(--teal-mid)">
+      <div class="st">React Native por dentro</div>
+      <p>Metro, Hermes, React, Fabric, TurboModules. Vistas nativas de verdad, decididas desde JavaScript. CLI para aprender; Expo después.</p>
+    </div>
+  </div>
+  <div class="key-idea key-purple">Si se llevan una sola idea: <strong>React Native no es una web disfrazada. Es una app nativa que piensa en JavaScript.</strong></div>
+</section>
+
+<section data-background-color="#ffffff">
+  <span class="tag tag-gray">Lo que viene</span>
+  <h2>Jueves 12: la primera app corriendo</h2>
+  <div class="two-col">
+    <div class="card">
+      <strong>En clase</strong>
+      <ul>
+        <li>Primeros 20 minutos: destrabar instalaciones.</li>
+        <li>Crear el proyecto con React Native CLI y correrlo en Android (iOS en demostración).</li>
+        <li>Anatomía del proyecto: <ic>android/</ic>, <ic>ios/</ic>, <ic>index.js</ic>, <ic>App.tsx</ic>.</li>
+        <li>JavaScript moderno y TypeScript, lo justo, leyendo el código línea por línea.</li>
+        <li>Maquetar la primera pantalla: View, Text, StyleSheet y Flexbox.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <strong>Para el jueves</strong>
+      <ul>
+        <li>La tarea de hoy: entorno instalado con la guía y captura del <ic>doctor</ic> en el LMS antes del miércoles a las 9 de la noche.</li>
+        <li>Traer laptop con cargador y, si tienen, un teléfono Android con su cable.</li>
+        <li>El problema del proyecto, aunque sea en una frase.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="key-idea key-green">Hoy entendieron qué hay debajo. El jueves lo ven aparecer en su propia pantalla.</div>
+</section>
+
+</div></div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-clike.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-typescript.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-tsx.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+<script>
+Reveal.initialize({
+  hash:true, transition:'slide', transitionSpeed:'fast',
+  controls:true, progress:true, center:true,
+  width:1280, height:720, margin:0.08,
+  minScale:0.5, maxScale:1.4
+});
+Reveal.on('ready', () => Prism.highlightAll());
+</script>
+</body>
+</html>
