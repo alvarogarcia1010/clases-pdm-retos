@@ -364,53 +364,69 @@
   </div>
 </section>
 
-<section data-background-color="#ffffff">
+<section data-background-color="#ffffff" class="tight">
   <span class="tag tag-teal">Bloque 3 · Primero, lo que no es</span>
-  <h2>Tres mitos que van a escuchar</h2>
+  <h2>Tres cosas que van a escuchar y no son ciertas</h2>
   <div class="two-col">
     <div class="card" style="border-left:3px solid var(--red-mid)">
       <strong style="color:var(--red-dark)">Lo que React Native no es</strong>
       <ul>
-        <li><strong>No es una página web dentro de una app.</strong> Eso es una app híbrida (Ionic, Cordova): un WebView mostrando HTML.</li>
-        <li><strong>No traduce su código a Kotlin o Swift.</strong> Su JavaScript sigue siendo JavaScript y se ejecuta dentro de la app.</li>
-        <li><strong>No es "lento por definición".</strong> Esa fama viene de una arquitectura que ya no existe. Lo vemos en dos slides.</li>
+        <li><strong>Una página web metida en una app.</strong> Esas existen (se llaman híbridas) y se sienten lentas. React Native no es eso.</li>
+        <li><strong>Un traductor a Kotlin o Swift.</strong> Su JavaScript sigue siendo JavaScript y viaja dentro de la app.</li>
+        <li><strong>Lento por naturaleza.</strong> Esa fama viene de cómo funcionaba hace años. Ya cambió, y en un momento vemos por qué.</li>
       </ul>
     </div>
     <div class="card" style="border-left:3px solid var(--teal-mid)">
       <strong style="color:var(--teal-dark)">Lo que sí es</strong>
       <ul>
-        <li>Una app nativa de verdad, compilada con Gradle o Xcode, instalada desde la tienda.</li>
-        <li>Con un motor de JavaScript adentro que decide <strong>qué vistas nativas mostrar</strong> y <strong>qué hacer</strong> cuando el usuario toca algo.</li>
-        <li>Con un puente directo al código nativo para todo lo que el teléfono sabe hacer: cámara, GPS, base de datos, notificaciones.</li>
+        <li>Una app de verdad, de las que se bajan de la tienda y se instalan.</li>
+        <li>Con un pequeño cerebro de JavaScript adentro que decide <strong>qué mostrar</strong> y <strong>qué hacer</strong> cuando el usuario toca algo.</li>
+        <li>Con un cable directo al teléfono para usar la cámara, el GPS, la base de datos o las notificaciones.</li>
       </ul>
     </div>
   </div>
-  <div class="key-idea key-teal">React Native es una app nativa cuya lógica y cuyo árbol de interfaz los decide JavaScript.</div>
+  <div class="key-idea key-teal">React Native es una app nativa que piensa en JavaScript.</div>
 </section>
 
-<section data-background-color="#ffffff">
+<section data-background-color="#ffffff" class="tight">
   <span class="tag tag-teal">Bloque 3 · El recorrido</span>
-  <h2>Qué pasa cuando corre su app</h2>
-  <div class="tl">
-    <div class="step" style="border-color:var(--teal-mid)"><div class="when">1 · Metro</div><strong>Empaqueta</strong><p>Une sus archivos TSX en un solo bundle de JavaScript. En desarrollo lo sirve por red: por eso un cambio se ve al instante (Fast Refresh).</p></div>
-    <div class="step" style="border-color:var(--teal-mid)"><div class="when">2 · Hermes</div><strong>Ejecuta</strong><p>El motor de JavaScript de Meta, hecho para móvil. Precompila a bytecode para que la app abra rápido y use poca memoria.</p></div>
-    <div class="step" style="border-color:var(--teal-mid)"><div class="when">3 · React</div><strong>Decide</strong><p>Compara el árbol de componentes antes y después de cada cambio y calcula lo mínimo que hay que tocar en pantalla.</p></div>
-    <div class="step" style="border-color:var(--teal-mid)"><div class="when">4 · Fabric</div><strong>Renderiza</strong><p>Crea o actualiza las vistas nativas reales. <ic>&lt;View&gt;</ic> es un UIView o un android.view.View; <ic>&lt;Text&gt;</ic> es un UILabel o un TextView.</p></div>
-    <div class="step" style="border-color:var(--teal-mid)"><div class="when">5 · TurboModules</div><strong>Conectan</strong><p>Cámara, GPS, SQLite: código Kotlin, Swift o C++ expuesto a JavaScript a través de JSI, sin serializar JSON ni esperar.</p></div>
+  <h2>Qué pasa desde su código hasta la pantalla</h2>
+  <div class="pipe">
+    <div class="pbox origin"><div class="v">Su código</div><div class="d">Lo que ustedes escriben: pantallas, botones, qué pasa al tocar.</div><span class="t">App.tsx</span></div>
+    <div class="parrow">→</div>
+    <div class="pbox"><div class="v">Se junta</div><div class="d">Todos sus archivos quedan en un solo paquete que viaja dentro de la app.</div><span class="t">Metro</span></div>
+    <div class="parrow">→</div>
+    <div class="pbox"><div class="v">Se ejecuta</div><div class="d">Un motor de JavaScript que vive dentro de la app lo corre.</div><span class="t">Hermes</span></div>
+    <div class="parrow">→</div>
+    <div class="pbox"><div class="v">Se decide</div><div class="d">React compara lo de antes con lo de ahora y ve qué cambió.</div><span class="t">React</span></div>
+    <div class="parrow">→</div>
+    <div class="pbox"><div class="v">Se dibuja</div><div class="d">Con las piezas del teléfono: sus botones, textos y listas.</div><span class="t">Fabric</span></div>
+    <div class="parrow">→</div>
+    <div class="pbox end"><div class="ph and" style="margin:0 auto 4px"><div class="scr"><i></i><i></i><b></b></div></div><div class="ph-lbl">Pantalla</div></div>
   </div>
-  <div class="key-idea key-teal">Su código decide <strong>qué</strong>; el sistema operativo sigue dibujando <strong>cómo</strong>. Por eso la app se siente nativa: lo es.</div>
+  <div class="sidebox">
+    <div class="v">¿Y la cámara, el GPS, guardar datos?</div>
+    <div class="d">Su JavaScript le pide el favor a una pieza de código del teléfono que ya sabe hacerlo, y esa pieza le responde al instante. Así se usan la cámara, la ubicación, la base de datos o las notificaciones.</div>
+    <span class="t">TurboModules</span>
+  </div>
+  <div class="key-idea key-teal">Piénsenlo como una orquesta: su JavaScript es el director, pero los músicos (botones, listas, textos) son del teléfono. Por eso la app se siente nativa: lo es.</div>
 </section>
 
-<section data-background-color="#ffffff">
+<section data-background-color="#ffffff" class="tight">
   <span class="tag tag-teal">Bloque 3 · Así se ve</span>
-  <h2>Un componente, y lo que crea en el teléfono</h2>
-  <div class="code-row">
-    <pre><code class="language-tsx">import { View, Text, Pressable } from 'react-native';
+  <h2>Un componente, y lo que el teléfono crea con él</h2>
+  <div class="code-row" style="grid-template-columns:1.3fr 1fr">
+    <pre><code class="language-tsx">// 1. Pedimos las piezas que vamos a usar
+import { View, Text, Pressable } from 'react-native';
 
+// 2. Un componente es una función que devuelve lo que se ve
 export function Saludo() {
   return (
+    // 3. View: una caja que agrupa cosas
     &lt;View style={{ padding: 16 }}&gt;
+      {/* 4. Text: el único lugar donde va texto */}
       &lt;Text&gt;Hola, Retos&lt;/Text&gt;
+      {/* 5. Pressable: algo que se puede tocar */}
       &lt;Pressable onPress={() =&gt; console.log('tocado')}&gt;
         &lt;Text&gt;Tóqueme&lt;/Text&gt;
       &lt;/Pressable&gt;
@@ -418,64 +434,58 @@ export function Saludo() {
   );
 }</code></pre>
     <div>
-      <div class="card" style="border-left:3px solid var(--teal-mid); margin-bottom:8px">
-        <strong>En Android</strong>
-        <p><ic>View</ic> → ViewGroup · <ic>Text</ic> → TextView · el toque llega como un evento nativo y termina ejecutando su función <ic>onPress</ic> en JavaScript.</p>
+      <div class="card" style="display:flex; gap:16px; align-items:center; margin-bottom:8px; padding:14px 16px">
+        <div class="ph lg and" style="width:96px; height:158px; flex:0 0 auto; margin:0"><div class="scr" style="gap:8px; padding:12px 8px"><div class="tx" style="font-size:11px">Hola, Retos</div><b style="margin-top:0; height:24px; font-size:10px">Tóqueme</b></div></div>
+        <div>
+          <strong>Lo que aparece</strong>
+          <p>Una caja con un texto y un botón. Al tocarlo, se ejecuta la función que pusieron en <ic>onPress</ic>.</p>
+        </div>
       </div>
       <div class="card" style="border-left:3px solid var(--teal-mid); margin-bottom:8px">
-        <strong>En iOS</strong>
-        <p><ic>View</ic> → UIView · <ic>Text</ic> → UILabel · el mismo archivo, sin cambiar una línea.</p>
+        <strong>Lo que el teléfono crea</strong>
+        <p><strong>Android:</strong> la caja es un ViewGroup, el texto un TextView, lo tocable un botón nativo. <strong>iPhone:</strong> UIView y UILabel. Mismo archivo, sin cambiar una línea.</p>
       </div>
       <div class="card">
-        <strong>No se preocupen por la sintaxis</strong>
-        <p>El jueves la vamos a leer línea por línea. Hoy solo importa ver que esto <strong>no es HTML</strong>: no hay div, no hay button.</p>
+        <strong>No es HTML</strong>
+        <p>No hay <ic>div</ic> ni <ic>button</ic>: son las piezas del teléfono con un nombre en común. El jueves lo leemos línea por línea.</p>
       </div>
     </div>
   </div>
 </section>
 
-<section data-background-color="#ffffff">
+<section data-background-color="#ffffff" class="tight">
   <span class="tag tag-teal">Bloque 3 · Dentro de la app</span>
-  <h2>Tres hilos que conviene conocer desde hoy</h2>
-  <div class="three-col">
-    <div class="card" style="border-top:4px solid var(--teal-mid)">
-      <strong>Hilo de JavaScript</strong>
-      <p>Donde corre su código: la lógica, los estados, las decisiones de React. Uno solo. Si lo bloquean con un cálculo pesado, la app "no responde" aunque siga viva.</p>
-    </div>
-    <div class="card" style="border-top:4px solid var(--teal-mid)">
-      <strong>Hilo principal (UI)</strong>
-      <p>El del sistema operativo: dibuja las vistas y recibe los toques. Fabric lo usa para crear y actualizar la pantalla.</p>
-    </div>
-    <div class="card" style="border-top:4px solid var(--teal-mid)">
-      <strong>Hilos nativos de fondo</strong>
-      <p>Red, disco, base de datos, cámara. Los módulos nativos trabajan ahí y avisan cuando terminan. Por eso casi todo en móvil es asíncrono.</p>
-    </div>
+  <h2>Tres trabajadores dentro de la app</h2>
+  <div class="lanes">
+    <div class="lbl">Hilo de JavaScript<small>Su código. Piensa y decide. Es uno solo.</small></div>
+    <div class="track"><div class="blk purple" style="flex:1.3">decide qué mostrar</div><div class="blk red" style="flex:4">se pone a calcular un reporte enorme…</div><div class="blk purple" style="flex:1.1">responde</div></div>
+    <div class="lbl">Hilo principal<small>Dibuja la pantalla y recibe los toques.</small></div>
+    <div class="track"><div class="blk green" style="flex:1">dibuja</div><div class="blk green" style="flex:0.9">toque</div><div class="blk wait" style="flex:4">esperando a JavaScript… la app parece congelada</div><div class="blk green" style="flex:1">dibuja</div></div>
+    <div class="lbl">Hilos de fondo<small>Internet, disco, cámara. Avisan cuando terminan.</small></div>
+    <div class="track"><div class="blk blue" style="flex:3">descarga datos del servidor</div><div class="gap" style="flex:1"></div><div class="blk blue" style="flex:1.5">listo, avisa</div><div class="gap" style="flex:1.5"></div></div>
+    <div class="time">tiempo →</div>
   </div>
-  <div class="key-idea key-teal">Guarden esta imagen: en enero, cuando hablemos de asincronía y de estados de carga, todo se explica con estos tres hilos.</div>
+  <div class="key-idea key-teal">Es una cocina con un solo cocinero (JavaScript), meseros (la pantalla) y proveedores (los de fondo). Si el cocinero se pone a contar el inventario, los meseros siguen ahí, pero nadie recibe su plato. En enero, con asincronía, volvemos a este dibujo.</div>
 </section>
 
-<section data-background-color="#ffffff">
-  <span class="tag tag-teal">Bloque 3 · Antes y ahora</span>
-  <h2>Del bridge a la Nueva Arquitectura</h2>
+<section data-background-color="#ffffff" class="tight">
+  <span class="tag tag-teal">Bloque 3 · La historia detrás del mito</span>
+  <h2>Por qué van a leer que "React Native es lento"</h2>
   <div class="two-col">
-    <div class="card" style="border-left:3px solid #999">
-      <strong>Antes: el bridge (2015 a 2024)</strong>
-      <ul>
-        <li>JavaScript y el código nativo se hablaban por <strong>mensajes JSON asíncronos</strong>, en lotes.</li>
-        <li>Cada toque, cada scroll, cada medida de una vista cruzaba ese puente. En listas largas y animaciones se notaba.</li>
-        <li>De aquí viene la fama de "React Native es lento".</li>
-      </ul>
+    <div class="card" style="border-top:4px solid #999">
+      <strong>Antes (hasta 2024)</strong>
+      <div class="ba"><span class="node">JavaScript</span><span class="link"><span class="env">✉ ✉ ✉ ✉</span>notas por debajo de la puerta</span><span class="node">Teléfono</span></div>
+      <p>Su código y el teléfono se mandaban mensajitos por un puente, en lotes. Con muchos mensajes (una lista larga, una animación) la fila se atrasaba y se notaba. De ahí la fama.</p>
+      <p style="margin-top:0.3em"><span class="t" style="font-size:0.8em; color:#888">Nombre técnico: el bridge</span></p>
     </div>
-    <div class="card" style="border-left:3px solid var(--teal-mid)">
-      <strong>Ahora: JSI, Fabric y TurboModules</strong>
-      <ul>
-        <li><strong>JSI</strong>: JavaScript llama a C++ directo, de forma síncrona, sin JSON.</li>
-        <li><strong>Fabric</strong> renderiza en varios hilos y puede medir y dibujar sin esperar al siguiente lote.</li>
-        <li><strong>TurboModules</strong> se cargan solo cuando se usan. Desde React Native 0.82 (octubre de 2025) esta es la <strong>única</strong> arquitectura: el bridge ya no existe.</li>
-      </ul>
+    <div class="card" style="border-top:4px solid var(--teal-mid)">
+      <strong>Ahora</strong>
+      <div class="ba"><span class="node">JavaScript</span><span class="link solid">hablan directo</span><span class="node">Teléfono</span></div>
+      <p>Hablan de frente, sin fila ni mensajitos. Desde React Native 0.82 (octubre de 2025) es la única forma que existe: el puente desapareció.</p>
+      <p style="margin-top:0.3em"><span class="t" style="font-size:0.8em; color:#888">Nombre técnico: JSI, la Nueva Arquitectura</span></p>
     </div>
   </div>
-  <div class="key-idea key-teal">Cuando lean "React Native es lento" en un artículo o se lo diga una IA, miren la fecha de lo que está citando.</div>
+  <div class="key-idea key-teal">Cuando lean "React Native es lento", o se lo diga una IA, miren la fecha de lo que están citando.</div>
 </section>
 
 <section data-background-color="#ffffff">

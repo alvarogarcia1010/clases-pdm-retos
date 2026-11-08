@@ -199,3 +199,41 @@ code, ic { font-family:'Fira Code', Consolas, monospace; font-size:0.88em; backg
 .stn .qq { font-size:0.6em; font-weight:700; color:#111; line-height:1.25; margin:0 auto 7px; max-width:15ch; text-wrap:balance; }
 .stn .hint { font-size:0.46em; color:#666; line-height:1.4; max-width:21ch; margin:0 auto; flex:1; }
 .stn .ex { margin-top:9px; display:inline-block; font-size:0.4em; font-weight:700; padding:3px 10px; border-radius:12px; line-height:1.3; white-space:nowrap; }
+
+/* TUBERÍA: del código a la pantalla */
+.pipe { display:flex; align-items:stretch; justify-content:center; gap:6px; margin:0.5em 0 0.3em; }
+.pbox { flex:1; min-width:0; text-align:center; border-radius:12px; padding:12px 8px 10px; border:1.5px solid #e2e2e2; background:#fafafa; display:flex; flex-direction:column; align-items:center; }
+.pbox .v { font-size:0.6em; font-weight:800; color:#111; line-height:1.15; }
+.pbox .d { font-size:0.43em; color:#666; line-height:1.35; margin-top:5px; flex:1; }
+.pbox .t { display:inline-block; margin-top:7px; font-size:0.36em; font-family:Consolas, Menlo, monospace; color:#888; background:#fff; border:1px solid #e2e2e2; border-radius:4px; padding:1px 7px; }
+.pbox.origin { background:#fffdf3; border-color:#c9a800; }
+.pbox.end { background:#fff; border-style:dashed; justify-content:center; }
+.pipe .parrow { align-self:center; font-size:0.8em; color:#bbb; line-height:1; flex:0 0 auto; }
+.sidebox { display:flex; align-items:center; gap:14px; border:1.5px dashed var(--teal-mid); background:#fff; border-radius:12px; padding:8px 14px; margin:0.3em 0; }
+.sidebox .v { font-size:0.55em; font-weight:800; color:var(--teal-dark); white-space:nowrap; }
+.sidebox .d { font-size:0.46em; color:#555; line-height:1.4; flex:1; }
+.sidebox .t { font-size:0.36em; font-family:Consolas, Menlo, monospace; color:#888; background:#f6f6f6; border:1px solid #e2e2e2; border-radius:4px; padding:1px 7px; white-space:nowrap; }
+
+/* CARRILES (hilos a lo largo del tiempo) */
+.lanes { display:grid; grid-template-columns:190px 1fr; gap:7px 12px; align-items:center; margin:0.5em 0 0.2em; }
+.lanes .lbl { font-size:0.5em; font-weight:700; color:#111; line-height:1.2; text-align:left; }
+.lanes .lbl small { display:block; font-weight:400; color:#666; font-size:0.84em; margin-top:2px; }
+.lanes .track { display:flex; gap:4px; height:40px; background:#f4f4f4; border-radius:9px; padding:4px; }
+.lanes .blk { border-radius:6px; font-size:0.4em; font-weight:700; display:flex; align-items:center; justify-content:center; padding:0 8px; white-space:nowrap; overflow:hidden; min-width:0; }
+.lanes .blk.purple { background:var(--purple-bg); color:var(--purple-dark); }
+.lanes .blk.green { background:var(--green-bg); color:var(--green-dark); }
+.lanes .blk.blue { background:var(--blue-bg); color:var(--blue-dark); }
+.lanes .blk.red { background:#FCEBEB; color:#791F1F; }
+.lanes .blk.wait { background:transparent; color:#999; border:1.5px dashed #ccc; font-weight:600; }
+.lanes .gap { flex:1; }
+.lanes .time { grid-column:2; font-size:0.38em; color:#999; text-align:right; letter-spacing:0.05em; text-transform:uppercase; }
+
+/* ANTES / AHORA (dos nodos y un enlace) */
+.ba { display:flex; align-items:center; justify-content:center; gap:10px; margin:10px 0 8px; }
+.ba .node { font-size:0.48em; font-weight:700; padding:9px 13px; border-radius:10px; background:#fff; border:2px solid #333; white-space:nowrap; }
+.ba .link { flex:1; text-align:center; font-size:0.42em; color:#777; border-top:3px dashed #bbb; padding-top:5px; line-height:1.3; }
+.ba .link.solid { border-top:4px solid var(--teal-mid); color:var(--teal-dark); font-weight:700; }
+.ba .link .env { display:block; font-size:1.5em; letter-spacing:4px; color:#999; line-height:1; margin-bottom:2px; }
+
+/* texto dentro del teléfono grande */
+.ph.lg .scr .tx { font-size:9px; color:#333; font-family:'Segoe UI', system-ui, sans-serif; line-height:1.25; }
