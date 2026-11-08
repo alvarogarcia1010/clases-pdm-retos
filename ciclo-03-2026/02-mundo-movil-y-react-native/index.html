@@ -118,56 +118,84 @@
 
 <section data-background-color="#ffffff" class="tight">
   <span class="tag tag-amber">Bloque 2 · Las opciones</span>
-  <h2>Cuatro formas de hacer una app en 2026</h2>
-  <div class="four-col" style="font-size:0.9em">
+  <h2>Cuatro formas de hacer una app, dicho fácil</h2>
+  <div class="four-col" style="font-size:0.92em">
     <div class="card" style="border-top:4px solid var(--green-mid)">
       <strong>Nativo</strong>
-      <p><strong>Kotlin</strong> en Android, <strong>Swift</strong> en iOS.</p>
-      <p style="margin-top:0.3em">Dos bases de código, dos equipos. La UI la dibuja el sistema y cada novedad de la plataforma llega el día uno.</p>
-      <p style="margin-top:0.3em"><strong>Para:</strong> bancos grandes, cámaras, juegos.</p>
+      <div class="stack">
+        <div class="srcs"><span class="src k">Kotlin</span><span class="src sw">Swift</span></div>
+        <div class="darr">↓ &nbsp; ↓</div>
+        <div class="phones"><div><div class="ph and"><div class="scr"><i></i><i></i><b></b></div></div><div class="ph-lbl">Android</div></div><div><div class="ph ios"><div class="scr"><i></i><i></i><b></b></div></div><div class="ph-lbl">iPhone</div></div></div>
+      </div>
+      <p>Se escribe la app <strong>dos veces</strong>: una para Android y otra para iPhone. El doble de trabajo, pero cada una aprovecha todo su teléfono.</p>
+      <p style="margin-top:0.3em"><strong>Para:</strong> apps enormes o muy exigentes.</p>
     </div>
     <div class="card" style="border-top:4px solid var(--blue-mid)">
       <strong>Flutter</strong>
-      <p><strong>Dart</strong>. Lo impulsa Google.</p>
-      <p style="margin-top:0.3em">Trae su propio motor gráfico y dibuja cada pixel: la UI es idéntica en Android e iOS porque no usa los componentes del sistema.</p>
-      <p style="margin-top:0.3em"><strong>Para:</strong> interfaces muy propias; también web y escritorio.</p>
+      <div class="stack">
+        <div class="srcs"><span class="src dart">Dart</span></div>
+        <div class="darr">↙ &nbsp; ↘</div>
+        <div class="phones"><div><div class="ph and painted"><div class="scr"><i></i><i></i><b></b></div></div><div class="ph-lbl">Android</div></div><div><div class="ph ios painted"><div class="scr"><i></i><i></i><b></b></div></div><div class="ph-lbl">iPhone</div></div></div>
+      </div>
+      <p>Se escribe <strong>una vez</strong>. Flutter trae su propio pincel y <strong>pinta toda la pantalla</strong>: se ve igualita en Android y en iPhone.</p>
+      <p style="margin-top:0.3em"><strong>Para:</strong> apps con diseño muy propio.</p>
     </div>
     <div class="card" style="border-top:4px solid var(--purple-mid)">
       <strong>React Native</strong>
-      <p><strong>JavaScript / TypeScript</strong> con React. Lo impulsa Meta.</p>
-      <p style="margin-top:0.3em">Un solo código, pero los componentes son los nativos reales: un <ic>&lt;View&gt;</ic> es un View de Android o un UIView de iOS.</p>
-      <p style="margin-top:0.3em"><strong>Para:</strong> equipos que vienen de web, apps de negocio.</p>
+      <div class="stack">
+        <div class="srcs"><span class="src js">JavaScript</span></div>
+        <div class="darr">↙ &nbsp; ↘</div>
+        <div class="phones"><div><div class="ph and"><div class="scr"><i></i><i></i><b></b></div></div><div class="ph-lbl">Android</div></div><div><div class="ph ios"><div class="scr"><i></i><i></i><b></b></div></div><div class="ph-lbl">iPhone</div></div></div>
+      </div>
+      <p>Se escribe <strong>una vez</strong>. Le dice al teléfono qué mostrar y <strong>el teléfono pone sus propios botones</strong> y listas. Por eso se siente nativa: lo es.</p>
+      <p style="margin-top:0.3em"><strong>Para:</strong> quien ya sabe web; la mayoría de empresas de aquí.</p>
     </div>
     <div class="card" style="border-top:4px solid var(--teal-mid)">
-      <strong>Kotlin Multiplatform</strong>
-      <p><strong>Kotlin</strong>. Lo impulsan JetBrains y Google.</p>
-      <p style="margin-top:0.3em">Se comparte la lógica (datos, red, reglas); la UI puede ser nativa en cada plataforma o compartida con Compose Multiplatform.</p>
-      <p style="margin-top:0.3em"><strong>Para:</strong> equipos Android que quieren llegar a iOS.</p>
+      <strong style="font-size:0.55em; white-space:nowrap">Kotlin Multiplatform</strong>
+      <div class="stack">
+        <div class="srcs"><span class="src k">Kotlin · el motor</span></div>
+        <div class="darr">↙ &nbsp; ↘</div>
+        <div class="phones"><div><div class="ph and"><div class="scr"><i></i><i></i><b></b></div></div><div class="ph-lbl">Android</div></div><div><div class="ph ios"><div class="scr"><i></i><i></i><b></b></div></div><div class="ph-lbl">iPhone</div></div></div>
+      </div>
+      <p>Se comparte <strong>el motor</strong> (datos, cálculos, reglas); las pantallas se hacen aparte en cada teléfono.</p>
+      <p style="margin-top:0.3em"><strong>Para:</strong> empresas con app Android que quieren llegar a iPhone.</p>
     </div>
   </div>
-  <p class="small" style="margin-top:0.25em">Las cuatro dan apps nativas que se instalan desde la tienda. Lo que cambia es quién escribe la UI, quién la dibuja y qué equipo hace falta.</p>
+  <div class="legend"><span><i class="sw1"></i> pantalla hecha con piezas del teléfono</span><span><i class="sw2"></i> pantalla pintada por el framework</span></div>
 </section>
 
-<section data-background-color="#ffffff">
+<section data-background-color="#ffffff" class="tight">
   <span class="tag tag-amber">Bloque 2 · La diferencia que importa</span>
   <h2>¿Quién dibuja la pantalla?</h2>
-  <div class="two-col">
+  <div class="two-col" style="align-items:start">
     <div class="card" style="border-left:3px solid var(--purple-mid)">
-      <strong>Usa los componentes del sistema</strong>
-      <div class="flow" style="margin:0.2em 0 0.3em"><span class="fb fb-green">Nativo</span><span class="fb fb-purple">React Native</span><span class="fb fb-teal">KMP con UI nativa</span></div>
-      <ul>
-        <li>Un botón <strong>es</strong> un botón de Android o de iOS: hereda el look, la accesibilidad y los cambios de cada versión del sistema.</li>
-        <li>Se ve ligeramente distinto en cada plataforma, y eso es lo que el usuario espera.</li>
-        <li>Lo que paga: depende de que el sistema tenga el componente, o de un módulo nativo.</li>
+      <div style="display:flex; gap:14px; align-items:center">
+        <div class="ph lg and"><div class="scr"><div class="bar"></div><div class="in"></div><div class="in"></div><b>Entrar</b></div></div>
+        <div>
+          <strong>Con las piezas del teléfono</strong>
+          <div class="flow" style="margin:0.2em 0 0.4em"><span class="fb fb-green">Nativo</span><span class="fb fb-purple">React Native</span></div>
+          <span class="callout-pin" style="background:var(--green-bg); color:var(--green-dark)">Este botón lo puso Android</span>
+        </div>
+      </div>
+      <ul style="margin-top:0.5em">
+        <li>Se ve y se comporta como las demás apps del teléfono.</li>
+        <li>Si Android cambia el estilo de sus botones, la app cambia sola.</li>
+        <li>Teclado, letra grande y lector de pantalla vienen gratis.</li>
       </ul>
     </div>
-    <div class="card" style="border-left:3px solid var(--blue-mid)">
-      <strong>Dibuja sus propios pixeles</strong>
-      <div class="flow" style="margin:0.2em 0 0.3em"><span class="fb fb-blue">Flutter</span><span class="fb fb-teal">Compose Multiplatform</span></div>
-      <ul>
-        <li>Un botón es un <strong>dibujo</strong> de un botón, hecho por el motor del framework. Idéntico en todas partes.</li>
-        <li>Control total: animaciones y diseños que el sistema no ofrece se hacen sin pedir permiso.</li>
-        <li>Lo que paga: imitar el comportamiento del sistema (teclado, gestos, accesibilidad) y un binario más pesado.</li>
+    <div class="card" style="border-left:3px solid var(--amber-mid)">
+      <div style="display:flex; gap:14px; align-items:center">
+        <div class="ph lg and painted"><div class="scr"><div class="bar"></div><div class="in"></div><div class="in"></div><b>Entrar</b></div></div>
+        <div>
+          <strong>Pintada por el framework</strong>
+          <div class="flow" style="margin:0.2em 0 0.4em"><span class="fb fb-blue">Flutter</span></div>
+          <span class="callout-pin" style="background:var(--amber-bg); color:var(--amber-dark)">Este botón lo dibujó Flutter</span>
+        </div>
+      </div>
+      <ul style="margin-top:0.5em">
+        <li>Se ve idéntica en Android y en iPhone, al pixel.</li>
+        <li>Se puede inventar cualquier diseño: Flutter dibuja lo que le pidan.</li>
+        <li>Tiene que imitar lo que el teléfono hace solo, y la app pesa más.</li>
       </ul>
     </div>
   </div>
@@ -177,19 +205,19 @@
 <section data-background-color="#ffffff">
   <span class="tag tag-amber">Bloque 2 · Comparación</span>
   <h2>La tabla que se van a llevar</h2>
-  <table class="cmp">
+  <table class="cmp plain">
     <thead><tr><th></th><th>Nativo</th><th>Flutter</th><th class="hl">React Native</th><th>Kotlin Multiplatform</th></tr></thead>
     <tbody>
-      <tr><td>Lenguaje</td><td>Kotlin y Swift</td><td>Dart</td><td class="hl">JavaScript / TypeScript</td><td>Kotlin</td></tr>
-      <tr><td>Quién dibuja la UI</td><td>El sistema</td><td>Flutter, con Impeller</td><td class="hl">El sistema, orquestado desde JS</td><td>El sistema, o Compose Multiplatform</td></tr>
-      <tr><td>Código compartido</td><td>Ninguno</td><td>Casi todo</td><td class="hl">Casi todo</td><td>La lógica; la UI es opcional</td></tr>
-      <tr><td>Rendimiento</td><td>El máximo posible</td><td>Muy alto y constante</td><td class="hl">Alto; depende de no bloquear el hilo de JS</td><td>Nativo</td></tr>
-      <tr><td>Equipo típico</td><td>Dos equipos</td><td>Uno, que aprende Dart</td><td class="hl">Uno; ideal si ya sabe web</td><td>Uno, fuerte en Android</td></tr>
-      <tr><td>Lo respaldan</td><td>Google y Apple</td><td>Google</td><td class="hl">Meta, Microsoft, Expo, Shopify</td><td>JetBrains y Google</td></tr>
-      <tr><td>Dónde lo van a ver</td><td>En todo lo que los demás imitan</td><td>Startups y productos con UI propia</td><td class="hl">En la mayoría de empresas de aquí</td><td>En equipos Android grandes</td></tr>
+      <tr><td>¿Cuántas veces se escribe la app?</td><td><span class="pill p-gray">Dos veces</span></td><td><span class="pill p-green">Una vez</span></td><td class="hl"><span class="pill p-green">Una vez</span></td><td>El motor una vez; las pantallas, una por teléfono</td></tr>
+      <tr><td>¿Quién dibuja la pantalla?</td><td><span class="pill p-green">El teléfono</span></td><td><span class="pill p-amber">Flutter la pinta</span></td><td class="hl"><span class="pill p-green">El teléfono</span></td><td><span class="pill p-green">El teléfono</span> (o compartida)</td></tr>
+      <tr><td>¿Qué hay que aprender?</td><td>Kotlin y Swift, dos lenguajes</td><td>Dart, un lenguaje nuevo</td><td class="hl">JavaScript, que ya conocen</td><td>Kotlin</td></tr>
+      <tr><td>¿Se siente rápida?</td><td>Siempre</td><td>Sí</td><td class="hl">Sí, si no la sobrecargan</td><td>Sí</td></tr>
+      <tr><td>¿Qué equipo hace falta?</td><td>Dos equipos</td><td>Uno</td><td class="hl">Uno</td><td>Uno que ya sabe Android</td></tr>
+      <tr><td>¿Quién está detrás?</td><td>Google y Apple</td><td>Google</td><td class="hl">Meta, con Microsoft y Shopify</td><td>JetBrains y Google</td></tr>
+      <tr><td>¿Dónde la van a encontrar?</td><td>En las apps más grandes</td><td>Startups con diseño propio</td><td class="hl">En la mayoría de empresas de aquí</td><td>Empresas que ya tenían app Android</td></tr>
     </tbody>
   </table>
-  <p class="small" style="margin-top:0.2em">Todas tienen hot reload, acceso al hardware y camino a las dos tiendas. Eso ya no diferencia a nadie.</p>
+  <p class="small" style="margin-top:0.25em">Con cualquiera de las cuatro se hace una app seria. Elegir es cuestión de equipo, tiempo y tipo de app, no de cuál es "la mejor".</p>
 </section>
 
 <section data-background-color="#ffffff" class="tight">

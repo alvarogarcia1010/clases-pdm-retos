@@ -142,3 +142,51 @@ code, ic { font-family:'Fira Code', Consolas, monospace; font-size:0.88em; backg
 .q-slide h1 { font-size:1.45em; max-width:22ch; margin:0.3em auto 0.5em; line-height:1.2; text-wrap:balance; }
 .q-slide .hints { justify-content:center; gap:10px; }
 .q-slide .hints .fb { white-space:normal; max-width:30ch; text-align:center; font-weight:500; font-size:0.5em; padding:7px 14px; }
+
+/* MINI DIAGRAMAS: código → teléfonos */
+.stack { display:flex; flex-direction:column; align-items:center; gap:3px; margin:6px 0 8px; }
+.srcs { display:flex; gap:6px; justify-content:center; flex-wrap:wrap; }
+.src { font-family:Consolas, Menlo, monospace; font-size:0.38em; padding:3px 8px; border-radius:6px; background:#fff; border:1.5px solid #bbb; color:#333; font-weight:700; line-height:1.25; white-space:nowrap; }
+.src.k { border-color:#7F52FF; color:#5b35c9; }
+.src.sw { border-color:#F05138; color:#c93a1f; }
+.src.dart { border-color:#0175C2; color:#0175C2; }
+.src.js { border-color:#c9a800; color:#7a6b00; }
+.darr { font-size:0.55em; color:#aaa; line-height:1; }
+.phones { display:flex; gap:12px; justify-content:center; }
+.ph { width:42px; height:74px; border-radius:9px; border:2px solid #333; background:#fff; position:relative; overflow:hidden; margin:0 auto; }
+.ph::before { content:""; position:absolute; top:3px; left:50%; transform:translateX(-50%); width:12px; height:3px; border-radius:2px; background:#333; }
+.ph .scr { position:absolute; top:9px; right:4px; bottom:5px; left:4px; border-radius:4px; background:#f1f1f1; display:flex; flex-direction:column; gap:3px; padding:4px; }
+.ph .scr i { display:block; height:4px; border-radius:2px; background:#cfcfcf; }
+.ph .scr b { display:block; height:9px; border-radius:3px; margin-top:auto; }
+.ph.and .scr b { background:#3B6D11; }
+.ph.ios .scr b { background:#185FA5; }
+.ph.painted .scr { background:repeating-linear-gradient(135deg,#fde7a3 0 3px,#fff6d6 3px 6px); }
+.ph.painted .scr b { background:#854F0B; }
+.ph.painted .scr i { background:#e2c577; }
+.ph-lbl { font-size:0.34em; color:#666; text-align:center; margin-top:2px; line-height:1.15; }
+.legend { display:flex; gap:18px; justify-content:center; align-items:center; font-size:0.42em; color:#666; margin-top:2px; }
+.legend span { display:inline-flex; align-items:center; gap:6px; }
+.legend .sw1 { width:16px; height:11px; border-radius:3px; border:1.5px solid #333; background:#f1f1f1; }
+.legend .sw2 { width:16px; height:11px; border-radius:3px; border:1.5px solid #333; background:repeating-linear-gradient(135deg,#fde7a3 0 3px,#fff6d6 3px 6px); }
+
+/* TELÉFONO GRANDE (mockup de una pantalla) */
+.ph.lg { width:108px; height:176px; border-radius:16px; border-width:3px; }
+.ph.lg::before { width:30px; height:5px; top:6px; }
+.ph.lg .scr { top:16px; right:7px; bottom:8px; left:7px; border-radius:8px; gap:7px; padding:9px 8px; }
+.ph.lg .scr .bar { height:12px; border-radius:3px; background:#d9d9d9; margin-bottom:4px; }
+.ph.lg .scr .in { height:18px; border-radius:5px; background:#fff; border:1.5px solid #cfcfcf; }
+.ph.lg .scr b { height:24px; border-radius:7px; font-size:9px; font-weight:700; color:#fff; display:flex; align-items:center; justify-content:center; font-family:'Segoe UI', sans-serif; letter-spacing:0.02em; }
+.ph.lg.painted .scr .in { border-color:#e2c577; background:#fffaf0; }
+.ph.lg.painted .scr .bar { background:#eed59a; }
+.callout-pin { font-size:0.4em; font-weight:700; padding:3px 9px; border-radius:12px; line-height:1.2; white-space:nowrap; }
+
+/* PÍLDORAS DENTRO DE LA TABLA */
+.cmp.plain { font-size:0.5em; }
+.cmp.plain td:first-child { white-space:normal; width:21%; }
+.cmp .pill { display:inline-block; padding:2px 9px; border-radius:12px; font-weight:700; font-size:0.92em; white-space:nowrap; }
+.pill.p-green { background:var(--green-bg); color:var(--green-dark); }
+.pill.p-blue { background:var(--blue-bg); color:var(--blue-dark); }
+.pill.p-purple { background:var(--purple-bg); color:var(--purple-dark); }
+.pill.p-teal { background:var(--teal-bg); color:var(--teal-dark); }
+.pill.p-amber { background:var(--amber-bg); color:var(--amber-dark); }
+.pill.p-gray { background:#eee; color:#555; }
