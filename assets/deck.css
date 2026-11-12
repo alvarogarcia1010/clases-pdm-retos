@@ -274,3 +274,10 @@ code, ic { font-family:'Fira Code', Consolas, monospace; font-size:0.88em; backg
 .diag .t3 { font-size:15px; font-weight:700; fill:#791F1F; }
 .diag .tp { font-size:16px; font-weight:700; fill:#3C3489; }
 .diag .tb { font-size:16px; font-weight:700; fill:#0C447C; }
+
+/* QR */
+.qr-wrap { display:flex; align-items:center; gap:36px; justify-content:center; margin:0.2em 0; }
+.qr-box { background:#fff; border:1px solid #e0e0e0; border-radius:14px; padding:14px; box-shadow:0 6px 18px rgba(0,0,0,0.08); flex:0 0 auto; }
+.qr { width:230px; height:230px; display:block; }
+.qr path { fill:#111; }
+.qr-url { font-family:Consolas, Menlo, monospace; font-size:0.42em; color:var(--blue-mid); word-break:break-all; margin-top:6px; }
