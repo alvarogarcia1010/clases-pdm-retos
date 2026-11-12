@@ -237,3 +237,40 @@ code, ic { font-family:'Fira Code', Consolas, monospace; font-size:0.88em; backg
 
 /* texto dentro del teléfono grande */
 .ph.lg .scr .tx { font-size:9px; color:#333; font-family:'Segoe UI', system-ui, sans-serif; line-height:1.25; }
+
+/* EDITOR: bloque de código con barra de ventana, tema oscuro */
+.editor { border-radius:10px; overflow:hidden; background:#1e2330; border:1px solid #2b3140; box-shadow:0 6px 18px rgba(0,0,0,0.14); margin:0.3em 0; text-align:left; }
+.editor .bar { display:flex; align-items:center; gap:6px; padding:7px 12px; background:#171b25; border-bottom:1px solid #2b3140; }
+.editor .dot { width:11px; height:11px; border-radius:50%; display:inline-block; }
+.editor .dot.r { background:#ff5f57; } .editor .dot.y { background:#febc2e; } .editor .dot.g { background:#28c840; }
+.editor .fn { margin-left:8px; font-size:0.4em; color:#aab2c5; font-family:Consolas, Menlo, monospace; }
+.reveal .editor pre, .reveal .editor pre[class*="language-"] { margin:0; border:0; border-radius:0; background:transparent; font-size:0.44em; line-height:1.55; }
+.reveal .editor pre code { display:block; overflow-x:auto; }
+.editor code[class*="language-"], .editor pre[class*="language-"], .editor pre code { color:#e4e8f1; text-shadow:none; }
+.editor .token.comment { color:#7c8699; font-style:italic; }
+.editor .token.keyword { color:#c792ea; }
+.editor .token.string { color:#c3e88d; }
+.editor .token.function { color:#82aaff; }
+.editor .token.class-name { color:#ffcb6b; }
+.editor .token.tag { color:#f07178; display:inline; font-size:inherit; font-weight:inherit; text-transform:none; letter-spacing:0; padding:0; margin:0; border-radius:0; background:transparent; line-height:inherit; }
+.editor .token.tag .token.punctuation, .editor .token.punctuation { color:#89ddff; }
+.editor .token.attr-name { color:#ffcb6b; }
+.editor .token.attr-value { color:#c3e88d; }
+.editor .token.operator { color:#89ddff; background:transparent; }
+.editor .token.number, .editor .token.boolean { color:#f78c6c; }
+.editor .token.plain-text { color:#e4e8f1; }
+.editor .token.script-punctuation { color:#89ddff; }
+.editor.term { background:#15171c; border-color:#2a2d35; }
+.editor.term .bar { background:#0f1114; }
+.editor.term pre code, .editor.term code[class*="language-"] { color:#d8f0d8; }
+.editor.term .token.function { color:#8fe3a1; }
+.editor.term .token.parameter, .editor.term .token.operator { color:#aab2c5; }
+
+/* DIAGRAMAS SVG */
+.diag { width:100%; height:auto; display:block; margin:0.2em 0; overflow:visible; }
+.diag text { font-family:'Segoe UI', system-ui, -apple-system, sans-serif; }
+.diag .t1 { font-size:20px; font-weight:700; }
+.diag .t2 { font-size:16px; fill:#555; }
+.diag .t3 { font-size:15px; font-weight:700; fill:#791F1F; }
+.diag .tp { font-size:16px; font-weight:700; fill:#3C3489; }
+.diag .tb { font-size:16px; font-weight:700; fill:#0C447C; }

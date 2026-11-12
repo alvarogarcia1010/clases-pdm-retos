@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Desarrollo Móvil · Clase 3</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/white.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.min.css">
+<link rel="stylesheet" href="../../assets/deck.css">
+</head>
+<body>
+<div class="reveal"><div class="slides">
+
+<!-- ══════════════════════════════
+     PORTADA
+     ══════════════════════════════ -->
+<section data-background-color="#ffffff" style="text-align:center">
+  <span class="tag tag-gray" style="font-size:0.42em">Desarrollo Móvil · Ciclo III · 2026 · Sesión 3 · Jueves 12 de noviembre</span>
+  <h1 style="font-size:1.75em; margin:0.1em 0">Cómo se trabaja en una empresa y cómo funciona React Native por dentro</h1>
+  <p style="font-size:0.65em; color:#888; margin:0.4em 0 0.9em">"Primero cómo se trabaja. Después, qué hay debajo del código."</p>
+  <div class="chips">
+    <span class="chip tag-blue">Bloque 1 · La empresa</span>
+    <span class="chip tag-teal">Bloque 2 · React Native por dentro</span>
+  </div>
+  <p style="font-size:0.56em; color:#444; font-weight:600; margin-top:1em">Docente: Alvaro García · React Native</p>
+</section>
+
+<!-- ══════════════════════════════
+     BLOQUE 1 · CÓMO SE TRABAJA EN UNA EMPRESA
+     ══════════════════════════════ -->
+<section data-background-color="#ffffff" class="block-divider">
+  <div class="blk-num blk-blue">1</div>
+  <h1>Cómo se trabaja en una empresa de desarrollo móvil</h1>
+  <p class="sub">Lo que van a encontrar en la práctica, contado desde adentro</p>
+  <div class="flow" style="justify-content:center">
+    <div class="fb fb-blue">Tarea</div><span class="arrow">→</span>
+    <div class="fb fb-blue">Rama</div><span class="arrow">→</span>
+    <div class="fb fb-blue">Pull request</div><span class="arrow">→</span>
+    <div class="fb fb-blue">Code review</div><span class="arrow">→</span>
+    <div class="fb fb-blue">QA</div><span class="arrow">→</span>
+    <div class="fb fb-blue">Release</div>
+  </div>
+</section>
+
+
+<section data-background-color="#ffffff" class="q-slide">
+  <span class="tag tag-blue">Bloque 1 · Conversemos</span>
+  <h1>Explíquenme, paso a paso, cómo se prepara una taza de café.</h1>
+  <div class="flow hints"><span class="fb fb-gray">Como si fuera para alguien que nunca lo ha hecho.</span><span class="fb fb-gray">¿En qué orden? ¿Qué pasa si no hay agua caliente? ¿Cuánto es "un poco" de azúcar?</span></div>
+</section>
+
+
+<section data-background-color="#ffffff" class="tight">
+  <span class="tag tag-blue">Bloque 1 · El flujo</span>
+  <h2>El ciclo de vida de una funcionalidad</h2>
+  <div class="three-col">
+    <div class="card"><strong>1. La tarea</strong><p>Nace en un tablero (Jira, Trello) con un qué y un para qué. Ustedes estiman cuánto toma; al principio se van a equivocar, y es normal.</p></div>
+    <div class="card"><strong>2. La rama y el PR</strong><p>Nadie toca <ic>main</ic> directo. Se trabaja en una rama y se abre un pull request con descripción clara y capturas.</p></div>
+    <div class="card"><strong>3. El code review</strong><p>Otra persona lee su código antes de que entre y pide cambios. No es personal: es la herramienta de calidad más barata que existe.</p></div>
+    <div class="card"><strong>4. QA</strong><p>Alguien intenta romper lo que hicieron: teléfono viejo, sin internet, girando la pantalla. Si no lo rompen ellos, lo rompe el usuario.</p></div>
+    <div class="card"><strong>5. El release</strong><p>Build firmado, versión numerada, notas de versión, lanzamiento por fases. Después, monitoreo de errores en producción.</p></div>
+    <div class="card"><strong>6. El mantenimiento</strong><p>La mayor parte de la vida de una app no es construirla: es mantenerla. Por eso importa escribir código que otro pueda leer.</p></div>
+  </div>
+  <div class="key-idea key-blue">El café de hace un momento es la tarea del punto 1: nunca llega completa. Preguntar lo que falta <strong>antes</strong> de programar es parte del trabajo.</div>
+</section>
+
+
+<section data-background-color="#ffffff" class="tight">
+  <span class="tag tag-blue">Bloque 1 · La práctica</span>
+  <h2>Lo que les van a pedir, y lo que nadie les dice</h2>
+  <div class="two-col">
+    <div class="card" style="border-left:3px solid var(--blue-mid)">
+      <strong>Lo que dice el papel</strong>
+      <ul>
+        <li>Integrarse a un equipo con una app ya en producción.</li>
+        <li>Implementar componentes de UI y consumir APIs internas.</li>
+        <li>Participar en code reviews: recibir y dar retroalimentación.</li>
+        <li>Usar Git y un tablero de tareas como parte del flujo diario.</li>
+        <li>Ayudar a encontrar y corregir errores en producción.</li>
+      </ul>
+    </div>
+    <div class="card" style="border-left:3px solid var(--amber-mid)">
+      <strong>Lo que nadie les dice</strong>
+      <ul>
+        <li>Preguntar temprano vale más que resolver tarde. Nadie espera que sepan todo; esperan que avisen.</li>
+        <li>El código que van a tocar lo escribió otra persona, hace tiempo, con prisa. Leer código es la mitad del trabajo.</li>
+        <li>Un PR pequeño y claro se aprueba en una hora. Uno gigante se queda semanas.</li>
+        <li>La IA les va a dar velocidad. El criterio para saber si lo que produjo está bien, lo ponen ustedes.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="key-idea key-blue">Las empresas valoran menos cuánto React Native saben y más si entregan, preguntan, explican su código y cuidan <ic>main</ic>.</div>
+</section>
+
+
+<!-- ══════════════════════════════
+     BLOQUE 2 · REACT NATIVE POR DENTRO
+     ══════════════════════════════ -->
+<section data-background-color="#ffffff" class="block-divider">
+  <div class="blk-num blk-teal">2</div>
+  <h1>Cómo funciona React Native por dentro</h1>
+  <p class="sub">Qué pasa entre su JavaScript y la pantalla del teléfono</p>
+  <div class="flow" style="justify-content:center">
+    <div class="fb fb-teal">Su código</div><span class="arrow">→</span>
+    <div class="fb fb-teal">Metro</div><span class="arrow">→</span>
+    <div class="fb fb-teal">Hermes</div><span class="arrow">→</span>
+    <div class="fb fb-teal">React</div><span class="arrow">→</span>
+    <div class="fb fb-teal">Fabric</div><span class="arrow">→</span>
+    <div class="fb fb-teal">Vistas nativas</div>
+  </div>
+</section>
+
+
+<section data-background-color="#ffffff" class="tight">
+  <span class="tag tag-teal">Bloque 2 · Primero, lo que no es</span>
+  <h2>Tres cosas que van a escuchar y no son ciertas</h2>
+  <div class="two-col">
+    <div class="card" style="border-left:3px solid var(--red-mid)">
+      <strong style="color:var(--red-dark)">Lo que React Native no es</strong>
+      <ul>
+        <li><strong>Una página web metida en una app.</strong> Esas existen (se llaman híbridas) y se sienten lentas. React Native no es eso.</li>
+        <li><strong>Un traductor a Kotlin o Swift.</strong> Su JavaScript sigue siendo JavaScript y viaja dentro de la app.</li>
+        <li><strong>Lento por naturaleza.</strong> Esa fama viene de cómo funcionaba hace años. Ya cambió, y en un momento vemos por qué.</li>
+      </ul>
+    </div>
+    <div class="card" style="border-left:3px solid var(--teal-mid)">
+      <strong style="color:var(--teal-dark)">Lo que sí es</strong>
+      <ul>
+        <li>Una app de verdad, de las que se bajan de la tienda y se instalan.</li>
+        <li>Con un pequeño cerebro de JavaScript adentro que decide <strong>qué mostrar</strong> y <strong>qué hacer</strong> cuando el usuario toca algo.</li>
+        <li>Con un cable directo al teléfono para usar la cámara, el GPS, la base de datos o las notificaciones.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="key-idea key-teal">React Native es una app nativa que piensa en JavaScript.</div>
+</section>
+
+
+<section data-background-color="#ffffff" class="tight">
+  <span class="tag tag-teal">Bloque 2 · El recorrido</span>
+  <h2>Qué pasa desde su código hasta la pantalla</h2>
+  <div class="pipe">
+    <div class="pbox origin"><div class="v">Su código</div><div class="d">Lo que ustedes escriben: pantallas, botones, qué pasa al tocar.</div><span class="t">App.tsx</span></div>
+    <div class="parrow">→</div>
+    <div class="pbox"><div class="v">Se junta</div><div class="d">Todos sus archivos quedan en un solo paquete que viaja dentro de la app.</div><span class="t">Metro</span></div>
+    <div class="parrow">→</div>
+    <div class="pbox"><div class="v">Se ejecuta</div><div class="d">Un motor de JavaScript que vive dentro de la app lo corre.</div><span class="t">Hermes</span></div>
+    <div class="parrow">→</div>
+    <div class="pbox"><div class="v">Se decide</div><div class="d">React compara lo de antes con lo de ahora y ve qué cambió.</div><span class="t">React</span></div>
+    <div class="parrow">→</div>
+    <div class="pbox"><div class="v">Se dibuja</div><div class="d">Con las piezas del teléfono: sus botones, textos y listas.</div><span class="t">Fabric</span></div>
+    <div class="parrow">→</div>
+    <div class="pbox end"><div class="ph and" style="margin:0 auto 4px"><div class="scr"><i></i><i></i><b></b></div></div><div class="ph-lbl">Pantalla</div></div>
+  </div>
+  <div class="sidebox">
+    <div class="v">¿Y la cámara, el GPS, guardar datos?</div>
+    <div class="d">Su JavaScript le pide el favor a una pieza de código del teléfono que ya sabe hacerlo, y esa pieza le responde al instante. Así se usan la cámara, la ubicación, la base de datos o las notificaciones.</div>
+    <span class="t">TurboModules</span>
+  </div>
+  <div class="key-idea key-teal">Piénsenlo como una orquesta: su JavaScript es el director, pero los músicos (botones, listas, textos) son del teléfono. Por eso la app se siente nativa: lo es.</div>
+</section>
+
+
+<section data-background-color="#ffffff" class="tight">
+  <span class="tag tag-teal">Bloque 2 · Así se ve</span>
+  <h2>Un componente, y lo que el teléfono crea con él</h2>
+  <div class="code-row" style="grid-template-columns:1.3fr 1fr">
+    <div class="editor">
+      <div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="fn">Saludo.tsx</span></div>
+      <pre><code class="language-tsx">// 1. Pedimos las piezas que vamos a usar
+import { View, Text, Pressable } from 'react-native';
+
+// 2. Una función que devuelve lo que se ve
+export function Saludo() {
+  return (
+    // 3. View: una caja que agrupa cosas
+    &lt;View style={{ padding: 16 }}&gt;
+      {/* 4. Text: el único lugar donde va texto */}
+      &lt;Text&gt;Hola, Retos&lt;/Text&gt;
+      {/* 5. Pressable: algo que se puede tocar */}
+      &lt;Pressable onPress={() =&gt; console.log('tocado')}&gt;
+        &lt;Text&gt;Tóqueme&lt;/Text&gt;
+      &lt;/Pressable&gt;
+    &lt;/View&gt;
+  );
+}</code></pre>
+    </div>
+    <div>
+      <div class="card" style="display:flex; gap:16px; align-items:center; margin-bottom:8px; padding:14px 16px">
+        <div class="ph lg and" style="width:96px; height:158px; flex:0 0 auto; margin:0"><div class="scr" style="gap:8px; padding:12px 8px"><div class="tx" style="font-size:11px">Hola, Retos</div><b style="margin-top:0; height:24px; font-size:10px">Tóqueme</b></div></div>
+        <div>
+          <strong>Lo que aparece</strong>
+          <p>Una caja con un texto y un botón. Al tocarlo, se ejecuta la función que pusieron en <ic>onPress</ic>.</p>
+        </div>
+      </div>
+      <div class="card" style="border-left:3px solid var(--teal-mid); margin-bottom:8px">
+        <strong>Lo que el teléfono crea</strong>
+        <p><strong>Android:</strong> la caja es un ViewGroup, el texto un TextView, lo tocable un botón nativo. <strong>iPhone:</strong> UIView y UILabel. Mismo archivo, sin cambiar una línea.</p>
+      </div>
+      <div class="card">
+        <strong>No es HTML</strong>
+        <p>No hay <ic>div</ic> ni <ic>button</ic>: son las piezas del teléfono con un nombre en común. Pronto lo leemos línea por línea.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-background-color="#ffffff">
+  <span class="tag tag-teal">Bloque 2 · Dentro de la app</span>
+  <h2>Primero: ¿qué es un hilo?</h2>
+  <div class="three-col">
+    <div class="card" style="border-top:4px solid var(--purple-mid)">
+      <strong>Un trabajador</strong>
+      <p>Un hilo es un trabajador dentro de la app. Toma tareas de una fila y las hace <strong>una por una, en orden</strong>. No puede hacer dos a la vez.</p>
+    </div>
+    <div class="card" style="border-top:4px solid var(--purple-mid)">
+      <strong>El principal</strong>
+      <p>Cada app tiene uno principal: dibuja la pantalla, recibe los toques y corre su código. <strong>Si está ocupado, la pantalla no se mueve.</strong></p>
+    </div>
+    <div class="card" style="border-top:4px solid var(--blue-mid)">
+      <strong>Los de fondo</strong>
+      <p>Para lo que tarda (internet, disco, cámara) la app pide trabajadores extra. Hacen la tarea aparte y <strong>avisan cuando terminan</strong>.</p>
+    </div>
+  </div>
+  <div class="key-idea key-teal">Regla de oro del móvil: el hilo principal nunca se ocupa en algo largo. Si lo hace, la app se congela y el usuario lo nota en medio segundo.</div>
+  <p class="small" style="margin-top:0.3em">React Native, por dentro, reparte el principal en dos (uno para su código y otro para dibujar). La regla es la misma: lo pesado, afuera.</p>
+</section>
+
+<section data-background-color="#ffffff" class="tight">
+  <span class="tag tag-teal">Bloque 2 · Dentro de la app</span>
+  <h2>El principal manda; los de fondo salen y vuelven</h2>
+  <svg class="diag" viewBox="0 0 1100 330" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <marker id="ab" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#185FA5"/></marker>
+    </defs>
+    <!-- Caso bueno -->
+    <text x="30" y="24" class="t1" fill="#085041">Así debe ser: lo pesado se manda a un hilo de fondo</text>
+    <text x="30" y="60" class="tp">Hilo principal</text>
+    <line x1="30" y1="80" x2="1070" y2="80" stroke="#534AB7" stroke-width="6" stroke-linecap="round"/>
+    <polyline points="410,80 450,155 820,155 860,80" fill="none" stroke="#185FA5" stroke-width="5" stroke-linejoin="round" marker-end="url(#ab)"/>
+    <text x="635" y="188" class="tb" text-anchor="middle">hilo de fondo: descargando del servidor, 2 segundos</text>
+    <g fill="#534AB7" stroke="#fff" stroke-width="3">
+      <circle cx="100" cy="80" r="9"/><circle cx="250" cy="80" r="9"/><circle cx="410" cy="80" r="9"/><circle cx="860" cy="80" r="9"/><circle cx="1010" cy="80" r="9"/>
+    </g>
+    <text x="100" y="112" class="t2" text-anchor="middle">dibuja la pantalla</text>
+    <text x="250" y="112" class="t2" text-anchor="middle">el usuario toca Buscar</text>
+    <text x="400" y="62" class="t2" text-anchor="middle">pide los datos</text>
+    <text x="650" y="62" class="t2" text-anchor="middle">sigue atendiendo toques y scroll</text>
+    <text x="860" y="62" class="t2" text-anchor="middle">recibe los datos</text>
+    <text x="1010" y="112" class="t2" text-anchor="middle">dibuja los resultados</text>
+    <!-- Caso malo -->
+    <text x="30" y="232" class="t1" fill="#791F1F">Así se congela: lo pesado en el hilo principal</text>
+    <text x="30" y="264" class="tp">Hilo principal</text>
+    <line x1="30" y1="288" x2="1070" y2="288" stroke="#534AB7" stroke-width="6" stroke-linecap="round"/>
+    <line x1="300" y1="288" x2="880" y2="288" stroke="#A32D2D" stroke-width="12" stroke-linecap="round"/>
+    <g fill="#534AB7" stroke="#fff" stroke-width="3"><circle cx="110" cy="288" r="9"/><circle cx="270" cy="288" r="9"/><circle cx="1000" cy="288" r="9"/></g>
+    <text x="110" y="320" class="t2" text-anchor="middle">dibuja la pantalla</text>
+    <text x="270" y="320" class="t2" text-anchor="middle">toca Buscar</text>
+    <text x="590" y="320" class="t3" text-anchor="middle">descargando en el hilo principal… 2 segundos en los que nada responde</text>
+    <text x="450" y="268" class="t3" text-anchor="middle">✕ toque ignorado</text>
+    <text x="620" y="268" class="t3" text-anchor="middle">✕ scroll ignorado</text>
+    <text x="790" y="268" class="t3" text-anchor="middle">«la app no responde»</text>
+    <text x="1000" y="320" class="t2" text-anchor="middle">por fin dibuja</text>
+  </svg>
+  <div class="key-idea key-teal">Casi todo lo que hace una app móvil es esperar: a internet, al disco, a la cámara. Por eso en enero vamos a dedicar una clase entera a cómo esperar sin congelarse.</div>
+</section>
+
+<section data-background-color="#ffffff" class="tight">
+  <span class="tag tag-teal">Bloque 2 · Historia</span>
+  <h2>El bridge: cómo se hablaban antes</h2>
+  <div class="ba" style="max-width:720px; margin:14px auto 10px"><span class="node">Su JavaScript</span><span class="link"><span class="env">✉ ✉ ✉ ✉ ✉</span>mensajes en fila, uno tras otro</span><span class="node">El teléfono (Kotlin / Swift)</span></div>
+  <div class="two-col">
+    <div class="card" style="border-left:3px solid #999">
+      <strong>Qué era</strong>
+      <p>Un puente entre dos mundos que no hablan el mismo idioma. Para pedirle algo al teléfono ("dibuja esto", "dame la ubicación"), su JavaScript escribía un mensaje de texto, lo ponía en una fila y el teléfono lo leía cuando podía. La respuesta volvía por la misma fila.</p>
+    </div>
+    <div class="card" style="border-left:3px solid var(--red-mid)">
+      <strong>Por qué se notaba</strong>
+      <p>Cada toque, cada scroll, cada "¿cuánto mide esta vista?" era un mensaje más. Con pocos no pasa nada. Con una lista larga o una animación, la fila se llenaba y la app iba un paso atrás del dedo.</p>
+    </div>
+  </div>
+  <div class="key-idea key-teal">Con el bridge se hicieron Instagram, Discord y miles de apps durante casi diez años. Funcionaba, pero era la parte más lenta de todo el sistema.</div>
+</section>
+
+<section data-background-color="#ffffff" class="tight">
+  <span class="tag tag-teal">Bloque 2 · Historia</span>
+  <h2>JSI: la puerta directa de ahora</h2>
+  <div class="ba" style="max-width:720px; margin:14px auto 10px"><span class="node">Su JavaScript</span><span class="link solid">se hablan de frente, al instante</span><span class="node">El teléfono (Kotlin / Swift)</span></div>
+  <div class="two-col">
+    <div class="card" style="border-left:3px solid var(--teal-mid)">
+      <strong>Qué es</strong>
+      <p>JavaScript Interface. Una capa delgada (escrita en C++) que deja que su JavaScript tenga en la mano las piezas del teléfono y las llame directo, como si fueran funciones suyas. Sin mensajes, sin fila, sin esperar turno.</p>
+    </div>
+    <div class="card" style="border-left:3px solid var(--teal-mid)">
+      <strong>Qué cambió para ustedes</strong>
+      <p>Dibujar la pantalla y usar la cámara, el GPS o la base de datos ahora pasan por esta puerta. Desde React Native 0.82 (octubre de 2025) es la única que existe: el puente se quitó por completo.</p>
+    </div>
+  </div>
+  <div class="key-idea key-teal">Por eso van a leer que "React Native es lento": muchos artículos, y muchas respuestas de IA, siguen describiendo el puente. Cuando lo lean, miren la fecha.</div>
+</section>
+
+<section data-background-color="#ffffff">
+  <span class="tag tag-teal">Bloque 2 · Dos formas de empezar</span>
+  <h2>React Native CLI y Expo</h2>
+  <div class="two-col">
+    <div class="card" style="border-top:4px solid var(--teal-mid)">
+      <strong>React Native CLI</strong>
+      <ul>
+        <li>El proyecto trae las carpetas <ic>android/</ic> e <ic>ios/</ic> a la vista. Ustedes compilan con Gradle y con Xcode.</li>
+        <li>Necesitan Android Studio en su máquina, y una Mac para iOS.</li>
+        <li>Cualquier librería nativa entra sin intermediarios. Control total, y también toda la responsabilidad.</li>
+        <li>Así están la mayoría de las apps con años en producción.</li>
+      </ul>
+    </div>
+    <div class="card" style="border-top:4px solid var(--purple-mid)">
+      <strong>Expo</strong>
+      <ul>
+        <li>Un framework encima de React Native: router, librerías ya configuradas y herramientas de construcción.</li>
+        <li><strong>Expo Go</strong>: prueban en su teléfono escaneando un QR, sin compilar nada. <strong>EAS</strong> compila en la nube, iOS incluido, sin Mac.</li>
+        <li>Las carpetas nativas se generan cuando hacen falta (prebuild). Mucha magia útil.</li>
+        <li>Es lo que la documentación oficial recomienda para un proyecto nuevo.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="key-idea key-teal">El código de React Native es el mismo en los dos. Lo que cambia es <strong>cuánto de lo nativo ven y manejan ustedes</strong>.</div>
+</section>
+
+<section data-background-color="#ffffff">
+  <span class="tag tag-teal">Bloque 2 · Nuestra decisión</span>
+  <h2>En este módulo usamos React Native CLI</h2>
+  <div class="two-col">
+    <div class="card" style="border-left:3px solid var(--teal-mid)">
+      <strong>Por qué</strong>
+      <ul>
+        <li>Van a ver Android e iOS por dentro: <ic>AndroidManifest.xml</ic>, Gradle, <ic>Info.plist</ic>, el keystore. Lo necesitan para permisos y para publicar, y es lo que tocan en una app real.</li>
+        <li>Cuando una librería nativa falle, van a entender <strong>qué</strong> falló, en vez de ver un error que una herramienta escondió.</li>
+        <li>Lo que cuesta: una instalación más pesada y una primera compilación lenta. Por eso va a haber una guía paso a paso.</li>
+      </ul>
+    </div>
+    <div class="card" style="border-left:3px solid var(--purple-mid)">
+      <strong>Y Expo, con honestidad</strong>
+      <ul>
+        <li>Es excelente y seguramente lo usen en algún trabajo. No lo evitamos por malo; lo dejamos para después por pedagogía.</li>
+        <li>Cuando entiendan lo que Expo hace por ustedes, lo aprenden en una tarde. Al revés no funciona igual.</li>
+        <li>Si la empresa de la práctica usa Expo, van a estar cómodos: los componentes, los hooks y la navegación son los mismos.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="key-idea key-teal">Aprender con CLI es aprender a manejar con caja mecánica: después, la automática se entiende sola.</div>
+</section>
+
+<section data-background-color="#ffffff">
+  <span class="tag tag-teal">Bloque 2 · Demostración</span>
+  <h2>Los dos en vivo, desde cero</h2>
+  <div class="two-col">
+    <div class="card" style="border-top:4px solid var(--teal-mid)">
+      <strong>React Native CLI</strong>
+      <div class="editor term">
+        <div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="fn">Terminal</span></div>
+        <pre><code class="language-bash">npx @react-native-community/cli@latest init DemoCli
+cd DemoCli
+npm run android</code></pre>
+      </div>
+      <p>Qué mirar: las carpetas <ic>android/</ic> e <ic>ios/</ic>, lo que descarga Gradle la primera vez y cuánto tarda, y la app apareciendo en el emulador.</p>
+    </div>
+    <div class="card" style="border-top:4px solid var(--purple-mid)">
+      <strong>Expo</strong>
+      <div class="editor term">
+        <div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="fn">Terminal</span></div>
+        <pre><code class="language-bash">npx create-expo-app@latest DemoExpo
+cd DemoExpo
+npx expo start</code></pre>
+      </div>
+      <p>Qué mirar: no hay carpetas nativas, el QR, Expo Go abriendo la app en el teléfono en segundos.</p>
+    </div>
+  </div>
+  <div class="key-idea key-teal">En los dos vamos a cambiar un texto en <ic>App.tsx</ic> y verlo en pantalla sin recompilar. Eso es Fast Refresh, y va a ser su mejor amigo.</div>
+</section>
+
+</div></div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-markup.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-clike.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-typescript.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-tsx.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+<script>
+Reveal.initialize({
+  hash:true, transition:'slide', transitionSpeed:'fast',
+  controls:true, progress:true, center:true,
+  width:1280, height:720, margin:0.08,
+  minScale:0.5, maxScale:1.4
+});
+Reveal.on('ready', () => Prism.highlightAll());
+</script>
+</body>
+</html>
