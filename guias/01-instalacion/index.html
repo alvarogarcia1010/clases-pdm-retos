@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Guía: su primera app en su teléfono</title>
+<title>Guía 1: su primera app en su teléfono</title>
 <link rel="stylesheet" href="../../assets/site.css">
 <style>
   .os { display:inline-block; font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; padding:2px 9px; border-radius:12px; margin:10px 0 4px; }
   .os-win { background:var(--blue-bg); color:var(--blue-dark); }
-  .os-mac { background:#eee; color:#444; }
+  .os-lin { background:var(--amber-bg); color:var(--amber-dark); }
   .check { background:var(--green-bg); color:var(--green-dark); border-radius:8px; padding:8px 12px; font-size:0.9rem; margin-top:10px; }
   .check code { background:rgba(0,0,0,0.08); }
   .guide pre.wrap { white-space:pre-wrap; word-break:break-all; }
@@ -17,15 +17,15 @@
 <body>
 <div class="wrap guide">
   <header>
-    <span class="tag tag-gray">Desarrollo Móvil · Ciclo III 2026</span>
-    <h1>Guía: su primera app corriendo en su teléfono</h1>
-    <p>Seis pasos, en orden. Al final van a tener React Native instalado y una app de prueba corriendo en su propio Android. Docente: Alvaro García.</p>
+    <span class="tag tag-gray">Desarrollo Móvil · Guía 1</span>
+    <h1>Su primera app corriendo en su teléfono</h1>
+    <p>Seis pasos, en orden, para Windows y Linux. Al final van a tener React Native instalado y una app de prueba corriendo en su propio Android. Docente: Alvaro García.</p>
   </header>
 
   <div class="toc">
     <a href="#p1">1 · Node.js</a>
     <a href="#p2">2 · Android Studio</a>
-    <a href="#p3">3 · Java 17</a>
+    <a href="#p3">3 · Java</a>
     <a href="#p4">4 · La terminal</a>
     <a href="#p5">5 · El teléfono</a>
     <a href="#p6">6 · La app</a>
@@ -33,7 +33,7 @@
   </div>
 
   <div class="callout callout-amber">
-    <strong>Qué necesitan:</strong> una laptop con Windows 10/11 o macOS, unos 20 GB libres, buena conexión (se descargan unos 4 GB), su teléfono Android y un cable USB que transmita datos (muchos cables baratos solo cargan). Calculen una hora, más las descargas. Vayan en orden y no se salten pasos.
+    <strong>Qué necesitan:</strong> una laptop con Windows 10/11 o Linux (Ubuntu o parecido), unos 20 GB libres, buena conexión (se descargan unos 4 GB), su teléfono Android y un cable USB que transmita datos (muchos cables baratos solo cargan). Calculen una hora, más las descargas. Vayan en orden y no se salten pasos. ¿Mac? Hablen conmigo, los pasos cambian un poco.
   </div>
 
   <!-- ══════════ 1 ══════════ -->
@@ -41,9 +41,15 @@
   <ol class="steps">
     <li>
       <strong>Verifiquen la versión</strong>
-      Abran una terminal (en Windows: PowerShell; en Mac: Terminal) y escriban:
+      Abran una terminal (Windows: PowerShell; Linux: Terminal) y escriban:
       <pre><code>node -v</code></pre>
-      Tiene que salir <strong>v22.11 o más</strong>. Si sale algo menor, o "no se reconoce el comando", descarguen el instalador <strong>LTS</strong> en <a href="https://nodejs.org/" target="_blank">nodejs.org</a>, instálenlo con todo por defecto, cierren la terminal, ábranla de nuevo y repitan.
+      Tiene que salir <strong>v22.11 o más</strong>. Si sale algo menor o "no se reconoce el comando":
+      <span class="os os-win">Windows</span>
+      Descarguen el instalador <strong>LTS</strong> en <a href="https://nodejs.org/" target="_blank">nodejs.org</a>, instálenlo con todo por defecto, cierren la terminal y ábranla de nuevo.
+      <span class="os os-lin">Linux</span>
+      Instalen nvm y con él el Node LTS (dos comandos; entre uno y otro cierren y abran la terminal):
+      <pre><code>curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+nvm install --lts</code></pre>
       <div class="check">✓ Listo cuando <code>node -v</code> muestra v22 o superior.</div>
     </li>
   </ol>
@@ -54,7 +60,12 @@
   <ol class="steps">
     <li>
       <strong>Descargar e instalar</strong>
-      Entren a <a href="https://developer.android.com/studio" target="_blank">developer.android.com/studio</a> y bajen el instalador. En Mac, fíjense en el chip: <em>Apple Silicon</em> para M1 a M4, <em>Intel</em> para las demás (menú Apple → Acerca de esta Mac). Instalen con todo por defecto: siguiente, siguiente, siguiente.
+      <span class="os os-win">Windows</span>
+      Entren a <a href="https://developer.android.com/studio" target="_blank">developer.android.com/studio</a>, bajen el instalador y ejecútenlo con todo por defecto: siguiente, siguiente, siguiente.
+      <span class="os os-lin">Linux</span>
+      En Ubuntu, lo más fácil es un comando:
+      <pre><code>sudo snap install android-studio --classic</code></pre>
+      En otras distribuciones, bajen el <code>.tar.gz</code> de <a href="https://developer.android.com/studio" target="_blank">developer.android.com/studio</a>, descomprímanlo en su carpeta personal y ábranlo con <code>~/android-studio/bin/studio.sh</code>. Si no abre, faltan unas librerías: <code>sudo apt install libc6:i386 libncurses6:i386 libstdc++6:i386 lib32z1 libbz2-1.0:i386</code>.
     </li>
     <li>
       <strong>Abrirlo una vez y dejar que termine</strong>
@@ -64,21 +75,21 @@
   </ol>
 
   <!-- ══════════ 3 ══════════ -->
-  <h2 id="p3">Paso 3 · Java 17</h2>
-  <p>Android se construye con una herramienta llamada Gradle, y Gradle corre sobre Java. Tiene que ser la <strong>versión 17</strong>; con otras aparecen errores raros.</p>
+  <h2 id="p3">Paso 3 · Java 17 o superior</h2>
+  <p>Android se construye con una herramienta llamada Gradle, y Gradle corre sobre Java. Sirve la <strong>17 o una más nueva</strong>; vamos a instalar la 21, que es la versión de largo soporte actual.</p>
   <ol class="steps">
     <li>
       <strong>Instalar</strong>
       <span class="os os-win">Windows</span>
-      <pre><code>winget install Microsoft.OpenJDK.17</code></pre>
-      <span class="os os-mac">Mac</span>
-      Descarguen el instalador <strong>.dmg</strong> de Zulu 17 en <a href="https://www.azul.com/downloads/?version=java-17-lts&os=macos&package=jdk#zulu" target="_blank">azul.com</a> (elijan ARM 64-bit para chip Apple, x86 64-bit para Intel) y ejecútenlo. Si ya usan Homebrew: <code>brew install --cask zulu@17</code>.
+      <pre><code>winget install Microsoft.OpenJDK.21</code></pre>
+      <span class="os os-lin">Linux</span>
+      <pre><code>sudo apt install -y openjdk-21-jdk</code></pre>
     </li>
     <li>
       <strong>Verificar</strong>
       Cierren la terminal, ábranla de nuevo y escriban:
       <pre><code>java -version</code></pre>
-      <div class="check">✓ Listo cuando la primera línea dice <code>17.</code> algo. Si dice 21 o 25, tienen otro Java instalado: el paso 4 lo resuelve.</div>
+      <div class="check">✓ Listo cuando la primera línea dice <code>21.</code> (o 17, si ya la tenían). Si dice una versión más vieja que 17, el paso 4 lo resuelve.</div>
     </li>
   </ol>
 
@@ -91,13 +102,13 @@
       <span class="os os-win">Windows</span>
       Abran <strong>PowerShell</strong> y peguen esto completo (son tres líneas largas), luego Enter:
       <pre class="wrap"><code>[Environment]::SetEnvironmentVariable("ANDROID_HOME", "$env:LOCALAPPDATA\Android\Sdk", "User")
-[Environment]::SetEnvironmentVariable("JAVA_HOME", (Get-ChildItem "C:\Program Files\Microsoft" -Directory -Filter "jdk-17*" | Select-Object -First 1).FullName, "User")
+[Environment]::SetEnvironmentVariable("JAVA_HOME", (Get-ChildItem "C:\Program Files\Microsoft" -Directory -Filter "jdk-21*" | Select-Object -First 1).FullName, "User")
 [Environment]::SetEnvironmentVariable("Path", [Environment]::GetEnvironmentVariable("Path", "User") + ";$env:LOCALAPPDATA\Android\Sdk\platform-tools", "User")</code></pre>
-      <span class="os os-mac">Mac</span>
-      Abran <strong>Terminal</strong> y peguen esto completo, luego Enter:
-      <pre><code>cat &gt;&gt; ~/.zshrc &lt;&lt;'EOF'
-export JAVA_HOME=$(/usr/libexec/java_home -v 17)
-export ANDROID_HOME=$HOME/Library/Android/sdk
+      <span class="os os-lin">Linux</span>
+      Abran la <strong>Terminal</strong> y peguen esto completo, luego Enter (si usan zsh, cambien <code>.bashrc</code> por <code>.zshrc</code>):
+      <pre><code>cat &gt;&gt; ~/.bashrc &lt;&lt;'EOF'
+export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which javac))))
+export ANDROID_HOME=$HOME/Android/Sdk
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 EOF</code></pre>
     </li>
@@ -106,7 +117,7 @@ EOF</code></pre>
       <strong>Cierren la terminal y abran una nueva</strong> (las variables solo existen en terminales nuevas). Escriban:
       <pre><code>adb --version
 java -version</code></pre>
-      <div class="check">✓ Listo cuando <code>adb</code> muestra una versión y <code>java</code> dice 17.</div>
+      <div class="check">✓ Listo cuando <code>adb</code> muestra una versión y <code>java</code> dice 21 (o 17).</div>
     </li>
   </ol>
 
@@ -128,6 +139,14 @@ java -version</code></pre>
       Ajustes → <strong>Sistema</strong> (o Ajustes adicionales) → <strong>Opciones de desarrollador</strong> → activar <strong>Depuración USB</strong>. En Xiaomi, activen también <em>Instalar vía USB</em>.
     </li>
     <li>
+      <strong>Solo en Linux: dar permiso al puerto USB</strong>
+      <span class="os os-lin">Linux</span>
+      Una sola vez, para que <code>adb</code> pueda ver el teléfono sin ser administrador:
+      <pre><code>sudo apt install -y android-sdk-platform-tools-common
+sudo usermod -aG plugdev $USER</code></pre>
+      Después <strong>cierren sesión y vuelvan a entrar</strong> (o reinicien).
+    </li>
+    <li>
       <strong>Conectar y autorizar</strong>
       Conecten el teléfono a la laptop con el cable. Si el teléfono pregunta qué hacer con la conexión, elijan <strong>Transferencia de archivos</strong>. Va a salir un aviso "<em>¿Permitir depuración USB?</em>": marquen <strong>Permitir siempre desde esta computadora</strong> y acepten.
     </li>
@@ -140,7 +159,7 @@ java -version</code></pre>
     </li>
   </ol>
   <div class="callout callout-blue">
-    <strong>¿No tienen Android?</strong> Para correr en iPhone hace falta una Mac con Xcode (unos 15 GB más). Si tienen iPhone, o no tienen teléfono a mano, hablen conmigo: vemos el emulador o un teléfono prestado en clase.
+    <strong>¿No tienen Android?</strong> Para correr en iPhone hace falta una Mac con Xcode. Si tienen iPhone, o no tienen teléfono a mano, hablen conmigo: vemos el emulador o un teléfono prestado en clase.
   </div>
 
   <!-- ══════════ 6 ══════════ -->
@@ -173,8 +192,8 @@ npm run android</code></pre>
   <!-- ══════════ ERRORES ══════════ -->
   <h2 id="falla">Si algo falla</h2>
   <div class="err"><b>"adb no se reconoce" o "ANDROID_HOME no está definido"</b><p>Es el paso 4: o faltó pegar el bloque, o la terminal es vieja. Cierren todas las terminales y abran una nueva.</p></div>
-  <div class="err"><b><code>java -version</code> dice 21 o 25</b><p>Tienen otro Java. El bloque del paso 4 apunta <code>JAVA_HOME</code> al 17; vuelvan a pegarlo y abran una terminal nueva.</p></div>
-  <div class="err"><b>El teléfono no aparece en <code>adb devices</code></b><p>Cable que solo carga (prueben otro), conexión en "Solo carga" (cambien a Transferencia de archivos), o depuración USB apagada. En Windows a veces falta el driver del fabricante: Samsung, Xiaomi y Huawei lo tienen en su sitio.</p></div>
+  <div class="err"><b><code>java -version</code> dice una versión más vieja que 17, o la 25</b><p>Tienen otro Java. El bloque del paso 4 apunta <code>JAVA_HOME</code> a la 21; vuelvan a pegarlo y abran una terminal nueva. Con la 25 Gradle todavía da problemas: usen la 21.</p></div>
+  <div class="err"><b>El teléfono no aparece en <code>adb devices</code></b><p>Cable que solo carga (prueben otro), conexión en "Solo carga" (cambien a Transferencia de archivos), o depuración USB apagada. En Windows a veces falta el driver del fabricante: Samsung, Xiaomi y Huawei lo tienen en su sitio. En Linux, si dice <code>no permissions</code>, falta el paso 5.3 y cerrar sesión.</p></div>
   <div class="err"><b><code>npm run android</code> termina con error en rojo</b><p>Lean las últimas líneas: casi siempre dice qué falta (una versión del SDK, una licencia). Si no se entiende, tomen captura de esas líneas y mándenmela.</p></div>
   <div class="err"><b>PowerShell dice que "la ejecución de scripts está deshabilitada"</b><p>Corran una vez <code>Set-ExecutionPolicy -Scope CurrentUser RemoteSigned</code>, respondan <code>S</code>, y repitan el comando.</p></div>
   <div class="err"><b>El nombre de su usuario de Windows tiene tilde, eñe o espacio</b><p>Algunas herramientas de Android fallan con eso y los errores no dicen la causa. Escríbanme antes de seguir; tiene arreglo.</p></div>
@@ -182,7 +201,7 @@ npm run android</code></pre>
   <p style="margin-top:28px">Para cualquier otra cosa: captura del error exacto, sistema operativo y en qué paso iban. Con eso lo resolvemos rápido.</p>
 
   <footer>
-    <a href="../">Volver al índice del ciclo</a> · Material del curso Desarrollo Móvil, Instituto Retos.
+    <a href="../">Todas las guías</a> · <a href="../../ciclo-03-2026/">Índice del ciclo</a> · Material del curso Desarrollo Móvil, Instituto Retos.
   </footer>
 </div>
 </body>
